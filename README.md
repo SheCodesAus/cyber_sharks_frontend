@@ -1,22 +1,7 @@
 # Your Product Name
-> Your Group Name
+> Cyber Sharks
 
-> [!NOTE]
-> This repo has been shared with your group. Use it to develop your group project.
->
-> Your group will have received two identical repos - one for your project's back-end, and another for the front-end. Although they are identical right now they are about to diverge, because you'll be using one to create a DRF project and the other to create a React project!
-
-> [!IMPORTANT]  
-> Use this `README.md` file to document your MVP using Markdown. Feel free to duplicate the product description aspects between the front-end README and the back-end README, but consider splitting out the technical design aspects to the specific repo that implements them. 
->
-> An example MVP spec (containing both front- and back-end descriptions) is set out below - you should replace it with your own content! (Remember to delete any "admonition" blocks like this `IMPORTANT` section, the `CAUTION` and `NOTE` sections, etc.)
-
-> [!CAUTION]  
-> In order to set up your project, **one** member of the group should clone this repo down, initialise a new React/DRF project, commit, and push. 
->
-> If more than one group member performs the setup, you'll have Git problems. Check out [the Git collaboration content](https://github.com/SheCodesAus/PlusLessonContent?tab=readme-ov-file#26---group-project) for more on how to use Git as a team.
-
-## Table of Contents
+<!-- ## Table of Contents
 
 - [Your Product Name](#your-product-name)
   - [Table of Contents](#table-of-contents)
@@ -41,91 +26,64 @@
     - [Database Schema](#database-schema)
   - [Front-end Implementation](#front-end-implementation)
     - [Wireframes](#wireframes)
-      - [Home Page](#home-page)
-      - [Collection List Page](#collection-list-page)
     - [Logo](#logo)
     - [Colours](#colours)
       - [Primary](#primary)
       - [Secondary](#secondary)
-    - [Font](#font)
+    - [Font](#font) -->
 
 
 ## Mission Statement
 
-> [!NOTE]  
-> What is the purpose of your project? (approx 100-200 words). Example below.
-
-Win-Wall is an online collaboration tool that provides organisers of SheCodes workshops as well as their attendees a visual workspace where they can add digital sticky notes to a blank digital wall in order to share wins with others during live events.
-This tool offers an unlimited number of digital win walls which are organised by event collection in order to facilitate collaboration during live events and easily bring all attendees’ wins to light in real time.
-Win-Wall comes packed full of features such as the ability to share a unique digital win wall to a live audience, easily approve and export win wall messages to upload on a WordPress website, manage user roles to give event organisers and attendees access to different functionalities, and many more.
+Empowering growth by connecting role models and opportunities in tech through a platform for collaboration and inclusivity.
 
 ## Features
 
-> [!NOTE]  
-> Tell me the features your website will and will not have. Give detailed explanations, this is where you define the scope of your project. Example below.
-
-
-### Summary 
-Provide Guest users ability to post sticky notes to a live event board. Once posted, users can view all posts for live event. Admin and approver access will allow events boards to be created, sticky notes to be edited, approved and exported.
+### Summary
+The web app will connect diverse individuals to panels and speaking opportunities by allowing:
+- Profiles for speakers to showcase their experience and expertise
+- Organizers to search and filter profiles effectively
+- A user-friendly platform that balances accessibility and professionalism
 
 ### Users
 
-| Type               | Access                                                                                                                                                                                                                                                                                             | Role type assignment                                |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------- |
-| Superuser or admin | <br> - All access   <br> - Can log in  <br> - Can log out  <br> - Create and manage events  <br> - Create and manage collections  <br> - Create and manage other users  <br> - Approve, archive and edit notes  <br> - Export notes as CSV  <br> - Can See and edit their details via profile page | Kate                                                |
-| Approver           | <br> - Can log in  <br> - Can log out  <br> - Approve, archive and edit notes  <br> - Can See and edit their details via profile page                                                                                                                                                              | Mentors, volunteers, shecodes11507 staff            |
-| Guest              | <br> - Create post it notes  <br> - Submit post it notes  <br> - View Live event board with all post it notes  <br> - can post with and without including their name                                                                                                                               | Public: Users who attend events, workshops, courses |
-
-### Sticky Notes
-
-| Feature                                        | Access                                                                                                                                                                                                           | Notes/Conditions                                                                                              |
-| :--------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------ |
-| Create                                         | Can be created by anyone with URL                                                                                                                                                                                | <br> - Limit length of sticky note text  <br> - option to add hashtag (TBC: as main text or additional field) |
-| Post                                           | Post as Guest                                                                                                                                                                                                    | <br> - Submits Sticky note to Live event board                                                                |
-| View                                           | Guests, Approvers and Admin can view posts via Live event board Admin and Approvers can view once status updated from Live                                                                                       |                                                                                                               |
-| Edit                                           | Can be edited by Admin and Approvers                                                                                                                                                                             | <br> - Edit sticky note text, eg: for spelling errors before Status is set to approved                        |
-| Statuses: Live, Unapproved, Approved, Archived | <br> - Auto status of notes will be ‘live’ based on linked event  <br> - Auto status of notes will be unapproved based on closure of linked event  <br> - Update to Approved and Archived by Admin and Approvers |                                                                                                               |
-| Export                                         | <br> - Export as Admin only                                                                                                                                                                                      | <br> - CSV file  <br> - Format: collection, event, sticky note text                                           |
-| Flag- Is Exported                              | <br> - Auto flag based on whether Admin has exported the sticky note                                                                                                                                             | <br> - Boolean                                                                                                |
-| Link to Collection                             | <br> - Controlled by Admin                                                                                                                                                                                       | <br> - Based on type of event, eg: shecodes flash, plus, other event types.                                   |
-| Link to Event                                  | <br> - Auto link based on event URL  <br> - Link to event can be edited by Admin                                                                                                                                 |                                                                                                               |
-| Link to Approver                               | <br> - Controlled by Admin and Approver who creates the event                                                                                                                                                    | <br> - Approver is User who is managing or associated with admin of the event                                 |
+| Type | Access | Role Type Assignment |
+|------|---------|---------------------|
+| Superuser/Admin | - Login, logout, and full profile management<br>- Verify and delete inactive profiles<br>- Update platform content<br>- Manage user accounts<br>- Access admin dashboard | Platform managers and administrators |
+| Individual User | - Create and update personal profiles<br>- Claim or request profile deletion<br>- Login and logout<br>- Filter and search profiles | Role models, diverse professionals seeking opportunities |
+| Guest User | - View profiles<br>- Search profiles but cannot contact without an account | Event organizers and general users exploring profiles |
 
 ### Collections
 
-| Feature                           | Access                     | Notes/Conditions           |
-| :-------------------------------- | :------------------------- | :------------------------- |
-| Assign events to a collection     | <br> - Based on event type |                            |
-| Assign approver to a collection   | <br> - admin               |                            |
-| Default event board live duration | <br> - Admin               | <br> - Based on event type |
-| View event boards by collection   | <br> - Admin, Approver     |                            |
-| Export notes by Collection        | <br> - Admin               |                            |
+| Feature | Access | Notes/Conditions |
+|---------|---------|-----------------|
+| Profile Information | Admin, User | Name, title, role, specialization, experience levels (technical and speaking), location, bio, and contact |
+| Profile Management | Admin, User | Profiles can be created by individuals or by nomination. Inactivity may lead to automatic deactivation |
+| Search and Filter | Guests, Admin, User | Filter by specialization, location, experience levels |
+| Profile Claiming | Admin, User | Users can claim a profile if created by someone else. Stretch goal for MVP |
 
 ### Pages/Endpoint Functionality
 
-| Endpoint              | functionality                                                                                                                                                                     | comments                                                                                         |
-| :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
-| Create and post notes | <br> - Available to anyone with URL   <br> - Add sticky notes   <br> - Post sticky notes                                                                                          | <br> - Sticky note ‘feel’ is preferred  <br> - Easy to read and accessible  <br> - Good contrast |
-| Event board           | <br> - Once note is posted, redirect to live session  notes  <br> - Able to post more notes (redirect back or add directly?)  <br> - Live session ends at midnight – day of event | <br> - view live notes  <br> - search notes by text/hashtag                                      |
-| Admin page            | All admin functions  <br> - can also create another admin account                                                                                                                 | <br> - Requires auth  <br> - initial admin created by DB                                         |
-| Register as Approver  | <br> - users can register as approvers  <br> - once registered, approver can log in                                                                                               | Requires shecodes email address to be used                                                       |
-| Approver page         | Approver functions                                                                                                                                                                | Requires auth Easy to read, accessible, easy to use for new users                                |
-| Profile page          | <br> - All registered users  <br> - Can view their personal info  <br> - Can update their info                                                                                    | Requires auth                                                                                    |
+| Endpoint/Page | Functionality | Comments |
+|--------------|---------------|-----------|
+| Homepage | - Introduction to the platform<br>- Create profile<br>- Carousel of featured profiles<br>- Search and filter functionality | Responsive design for desktop-first users |
+| Profiles | - Individual profiles with detailed information<br>- Continuous scroll for browsing profiles<br>- Search and filter functionality | Key feature of the MVP |
+| Profile | - Display detailed speaker information<br>- Provide a "Contact Speaker" option (requires login)<br>- Allow users to search and filter profiles<br>- Allow guests to view profiles but restrict contacting | Key feature of the MVP. Profiles are searchable and filterable |
+| Create profile | - Provide a form for users to input their details<br>- Allow admins to create or edit profiles for others<br>- Save profiles to the database<br>- Validate inputs | Users can update their profiles after creation |
+| Signup Page | - Enable new user registration<br>- Validate email format and passwords<br>- Include CAPTCHA (optional)<br>- Redirect users to create profile | Email should be mandatory to activate an account |
+| Admin Dashboard | - Manage all user and profile data<br>- Delete inactive profiles | Admin access only |
+| Login/Signup | - Create accounts<br>- Manage login/logout | Required for contacting profiles |
+| Profile Management | - Users can create and update their profiles<br>- Admin can verify or delete profiles | Separate profile creation from account creation |
 
 ### Nice To Haves
 
-- Register during or after event; Sign up for additional events: Email address, Name, Event
-- History of my own notes as Registered user
-- Events I have registered for as Registered user
-- Be able to edit my own notes – as Registered user but only until its been approved
-- Bulk update sticky note status
-- QR code generation 
-- Use QR codes to access event as guest
+- Profile likes and connection counts
+- Animations for improved user experience
+- Responsive design for mobile use
+- Claim profiles feature
+- Allow guests to view profiles without contact access
 
 ## Technical Implementation
-
-> [!NOTE]  
-> What languages and frameworks will you be using? What kind of database will you be using? How will you deploy the website? Example Below.
 
 ### Back-End
 
@@ -148,16 +106,71 @@ We will also use Insomnia to ensure API endpoints are working smoothly (we will 
 
 ## Target Audience
 
-> [!NOTE]  
-> Who is the website for? (approx 100 words). Example below.
+Our platform serves two primary audience segments:
 
-This website has two major target audiences: She Codes ‘Leaders, Volunteers & Mentors’, and ‘She Coders’ joining the one-day/short-term workshops. 
+**Primary Audience:**
+- Event organisers in the tech industry looking for women speakers and role models in tech
+- Women in tech or transitioning into tech roles, seeking speaking opportunities, and expand their network
+- Students and minority folks looking for inspiration and role models
 
-**She Codes Leaders, Volunteers and Mentors** (administrators) will use this website to assign one-day workshop coders to specific events and/or collections where they can fill-out a “sticky note” win and paste it on the WinsWall. The administrators will then be able to sort, authorise and delete these stickies and easily download the data in a CSV file. This website is targeted towards this group in order to automate a normally menial task.
+**Secondary Audience:**
+- Professionals seeking to build their personal brand and expand their professional network
+- Students and early career professionals exploring tech career paths
 
-**She Coders** (laypeople) will use this website to post their Win on a WinWall board, keep track of what events they’ve attended and also view previously written wins. This website is targeted to this group in order to prevent loss of paper data (physical sticky notes) and also make the WinsWall more interactive.
+### User Personas
 
-## Back-end Implementation
+**1. Role Model - Dr. Emily Carter**
+- Age: 37
+- Occupation: AI Research Scientist
+- Tech Specs: Machine Learning, AI
+- Goals:
+  - Build a personal brand as an expert in the tech industry
+  - Inspire and mentor women in tech
+  - Be discovered for speaking opportunities
+- Challenges:
+  - Limited time to manage outreach opportunities
+  - Difficulty showcasing expertise effectively online
+- Preferred Features:
+  - Profile creation and editing tools
+  - Privacy controls for contact preferences
+  - Easy to use interface for highlighting expertise
+- Quote: "I want to inspire others while continuing to grow my professional network."
+
+**2. Event Organiser - Camila**
+- Age: 42
+- Occupation: Event Coordinator at TechTechy
+- Event Focus: Tech Conferences and Webinars
+- Goals:
+  - Find diverse, qualified speakers for tech events
+  - Streamline the speaker selection process
+  - Ensure a professional and engaging event experience
+- Challenges:
+  - Difficulty finding speakers with specific expertise
+  - Limited time for manual searches and outreach
+- Preferred Features:
+  - Advanced search filters (expertise, location)
+  - Detailed speaker profiles with professional backgrounds
+  - Contact tools for outreach and response tracking
+- Quote: "I want to ensure our events feature speakers who inspire and engage the audience."
+
+**3. Community Member - Priya Kapoor**
+- Age: 24
+- Occupation: Software Engineering Student
+- Tech Interests: Frontend Development, UI/UX Design
+- Goals:
+  - Discover relatable role models in tech
+  - Learn about different career paths and specialisations
+  - Build confidence in pursuing a tech career
+- Challenges:
+  - Lack of access to diverse representation in the tech industry
+  - Uncertainty about which specialisation to pursue
+- Preferred Features:
+  - Browse functionality for profiles and success stories
+  - Insights into career paths and industry trends
+  - Role models with relatable journeys
+- Quote: "I want to explore tech career options and find role models who inspire me."
+
+<!-- ## Back-end Implementation
 ### API Specification
 
 | HTTP Method | URL                                 | Purpose                                                                                                                                  | Request Body                                                                                                       | Successful Response Code | Authentication and Authorization                      |
@@ -221,27 +234,49 @@ This website has two major target audiences: She Codes ‘Leaders, Volunteers & 
 
 ### Database Schema
 > [!NOTE]  
-> Insert an image of your database schema (could be a photo of a hand-drawn schema or a screenshot of a schema created using a tool such as ​​https://drawsql.app/). Example below.
+> Insert an image of your database schema (could be a photo of a hand-drawn schema or a screenshot of a schema created using a tool such as ​​https://drawsql.app/). Example below.  -->
 
-![Our database schema](./img/schema.png)
+<!-- [Our database schema](./img/schema.png) -->
 
 ## Front-end Implementation
 
 ### Wireframes
 
-> [!NOTE]  
-> Insert image(s) of your wireframes (could be a photo of hand-drawn wireframes or a screenshot of wireframes created using a tool such as https://www.mockflow.com/).
+<!-- > [!NOTE]  
+> Insert image(s) of your wireframes (could be a photo of hand-drawn wireframes or a screenshot of wireframes created using a tool such as https://www.mockflow.com/). -->
 
-See all wireframes and how Admins, Approvers and Students would see the Win Wall website: https://www.figma.com/file/cvP0Kc7lAX39Fvo12C5aLa/Win-Wall?node-id=22%3A1345 
+See version 1 of Wireframes here - https://excalidraw.com/#room=c17972f48f4322229496,9WDLADVu3hiEHfNN1ABdPA
 
-#### Home Page
-![](./img/homepage.png)
+#### Design Inspiration
+![Design Inspiration](./README_images/design-inspiration.png)
 
-#### Collection List Page
-![](./img/listpage.png)
+#### Wireframes - Version 1
+![Wireframe: homepage](./README_images/wireframes.png)
 
-> [!NOTE]  
-> etc...
+#### Wireframe - HOME
+![Wireframe - HOME](./README_images/1-wireframe-home.png)
+
+#### Wireframe - LOGIN
+![Wireframe - LOGIN](./README_images/2-wireframe-login.png)
+
+#### Wireframe - SIGNIN
+![Wireframe - SIGNIN](./README_images/3-wireframe-signin.png)
+
+#### Wireframe - SHOWING RESULTS
+![Wireframe - SHOWING RESULTS](./README_images/4-wireframe-showingResults.png)
+
+#### Wireframe - PROFILE
+![Wireframe - PROFILE](./README_images/5-wireframe-profile.png)
+
+#### Wireframe - CREATE PROFILE
+![Wireframe - CREATE PROFILE](./README_images/6-wireframe-createProfile.png)
+
+#### Wireframe - ERROR PAGE
+![Wireframe - ERROR PAGE](./README_images/7-wireframe-errorPage.png)
+
+#### Wireframe - PAGE NO RESULT
+![Wireframe - PAGE NO RESULT](./README_images/8-wireframe-pageNoResult.png)
+
 
 ### Logo
 ![](./img/logo.png)
