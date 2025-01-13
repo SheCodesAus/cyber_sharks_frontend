@@ -244,28 +244,139 @@ See V1 (completed Saturday 11 January 2025) of Wireframes [here](https://excalid
 #### Wireframe - PAGE NO RESULT
 ![Wireframe - PAGE NO RESULT](./README_images/8-wireframe-pageNoResult.png)
 
-### Logo
-![](./img/logo.png)
+## Style Guide
 
-### Colours
-#### Primary
+### Option 1: AESOP Style
 
-![](./img/primary.png)
+![AESOP Style Guide](./README_images/style-aesop.png)
 
-#### Secondary
+### Typography
+#### Headings
+- Font: Playfair Display
+- Source: [Google Fonts - Playfair Display](https://fonts.google.com/specimen/Playfair+Display)
+- Usage: Main headings, Navigation text, Important text content
 
-![](./img/secondary.png)
+#### Body Text
+- Font: Inter
+- Source: [Google Fonts - Inter](https://fonts.google.com/specimen/Inter)
+- Usage: Body text and general content
 
-### Font
+### Color Palette
+#### Primary Colors
+- Black (`#000000`)
+  - Usage: Main headings, Navigation text, Important text content, Primary buttons, Footer text
 
-(We will create a ‘highlight-text’ font style in CSS with the glow effect as per the above - to use on hero section)
-Raleway
-Google fonts:
+#### Secondary Colors
+- White (`#FFFFFF`)
+  - Usage: Page background, Input field backgrounds, Modal backgrounds, Card backgrounds, Profile cards
 
-```css
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
-font-family: 'Raleway', sans-serif;
-```
-(When Raleway is not available the standard font to be used is the Calibri font family)
+#### Accent Colors
+1. Orange (`#FF6600`)
+   - Usage: Call-to-action buttons, Selected states, Important indicators, Links hover states, Highlighted text
+2. Light Gray (`#F5F5F5`)
+   - Usage: Secondary backgrounds, Input field borders, Less prominent elements, Disabled states, Dividers
 
-![](./img/fonts.png)
+### Interactive Elements
+- Primary Button (Black background, White text)
+- Secondary Button (White background, Black border)
+- States:
+  - Inactive State (Light gray)
+  - Active State (Orange background)
+  - Disabled State (Light gray)
+
+## Option 2: Sunroom Style
+
+![Sunroom Style Guide](./README_images/style-sunroom.png)
+
+### Typography
+#### Headings
+- Font: Helvetica Neue or Archivo
+- Sources: 
+  - [Adobe Fonts - Helvetica Neue](https://fonts.adobe.com/fonts/helvetica-neue)
+  - [Google Fonts - Archivo](https://fonts.google.com/specimen/Archivo)
+- Usage: All headings and titles
+
+#### Body Text
+- Font: Roboto
+- Source: [Google Fonts - Roboto](https://fonts.google.com/specimen/Roboto?query=ROBOTO)
+- Usage: Body text and general content
+
+### Color Palette
+#### Primary Colors
+- Black (`#000000`)
+  - Usage: Headings, Buttons, Primary text, Navigation links, Footer text
+
+#### Secondary Colors
+- White (`#FFFFFF`)
+  - Usage: Background, Profile cards, Card backgrounds, Input fields, Error pages
+
+#### Accent Colors
+1. Burnt Orange (`#D35400`)
+   - Usage: Buttons, Links, Interactive elements, Active elements, Highlighted fields
+2. Soft Gray (`#E0E0E0`)
+   - Usage: Borders for input fields, Secondary backgrounds, Disabled states, Background for less prominent elements
+
+### Interactive Elements
+- Primary Button (Black background, White text)
+- Secondary Button (White background, Black border)
+- States:
+  - Inactive State (Light gray)
+  - Active State (Orange background)
+  - Disabled State (Light gray)
+
+## Option 3: Hinge Style
+
+![Hinge Style Guide](./README_images/style-hinge.png)
+
+### Typography
+#### Headings
+- Font: Cormorant Garamond
+- Source: [Google Fonts - Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond)
+- Usage: All headings and titles
+
+#### Body Text
+- Font: Open Sans
+- Source: [Google Fonts - Open Sans](https://fonts.google.com/specimen/Open+Sans?query=OPEN+SANS)
+- Usage: Body text and general content
+
+### Color Palette
+#### Primary Colors
+- Soft Black (`#1A1A1A`)
+  - Usage: Headings, Buttons, Primary content, Footer text, Navigation links
+
+#### Secondary Colors
+- White (`#FFFFFF`)
+  - Usage: Background, Profile cards, Card backgrounds, Modal backgrounds, Input fields
+
+#### Accent Colors
+1. Orange (`#FF6600`)
+   - Usage: Buttons, Links, Call to actions, Active elements, Highlighted fields
+2. Light Gray (`#E0E0E0`) or Soft Orange (`#FFC299`)
+   - Usage: Borders for input fields, Dividers, Background for less prominent elements, Disabled states
+
+### Interactive Elements
+- Primary Button (Soft Black background, White text)
+- Secondary Button (White background, Soft Black border)
+- Text Styles:
+  - Heading Text
+  - Body Text
+  - Link Text (Orange)
+- States:
+  - Inactive State (Light gray)
+  - Active State (Orange background)
+  - Disabled State (Light gray)
+
+## Icons
+The following icon sets are available for use across all style options:
+- [FontAwesome](https://fontawesome.com)
+- [Feather Icons](https://feathericons.com)
+- [Material Icons](https://fonts.google.com/icons)
+
+### Common Icons Used
+- Search Icon
+- User Profile Icon
+- Dropdown Icon
+- Pagination Icons
+- Error Icon
+- Edit Icon
+- Save Icon
