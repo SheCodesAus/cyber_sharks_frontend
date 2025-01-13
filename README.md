@@ -123,6 +123,23 @@ Our platform serves two primary audience segments:
 | Speaker/Role Model | Emily Carter, 37 | AI Research Scientist | • Build a personal brand as an expert in the tech industry.<br>• Inspire and mentor women in tech.<br>• Be discovered for speaking opportunities. | • Limited time to manage outreach opportunities.<br>• Difficulty showcasing expertise effectively online. | • Profile creation and editing tools.<br>• Privacy controls for contact preferences.<br>• Easy-to-use interface for highlighting expertise. | *"I want to inspire others while continuing to grow my professional network."* |
 | Event Organiser | Camila Smith, 42 | Event Coordinator at TechTechy | • Find diverse, qualified speakers for tech events.<br>• Streamline the speaker selection process.<br>• Ensure a professional and engaging event experience. | • Difficulty finding speakers with specific expertise.<br>• Limited time for manual searches and outreach. | • Advanced search filters (e.g., expertise, location).<br>• Detailed speaker profiles with professional backgrounds.<br>• Contact tools for outreach | *"I want to ensure our events feature speakers who inspire and engage the audience."* |
 
+### User Stories
+| User Type | User Stories | Requirements |
+|-----------|--------------|--------------|
+| Guest | *As a guest, I want to discover diverse role models in tech so that I can be inspired about potential career paths* | • Browse functionality<br>• Featured profiles<br>• Success stories<br>• Career path visibility |
+| Guest | *As a guest, I want to learn about different tech specialisations so that I can understand potential career options* | • Specialisation descriptions<br>• Role model experiences<br>• Career path insights<br>• Industry information |
+| Guest | *As a guest, I want to sign up easily so that I can personalise my experience and access premium features like direct contact.* | • Clear registration form<br>• Required fields validation<br>• Privacy policy acceptance<br>• Clear indication of mandatory fields |
+| Speaker/Role Model | *As a speaker, I want to create and manage profile(s) so that event organisers can find me for speaking opportunities* | • Registration functionality<br>• Profile creation form<br>• Profile editing capability<br>• Required fields validation |
+| Speaker/Role Model | *As a speaker/regular user, I want to showcase my areas of expertise so that I can be found for relevant speaking opportunities* | • Specialisation selection<br>• Topics/SME areas input<br>• Experience level indication<br>• Professional background |
+| Speaker/Role Model | *As a speaker, I want to manage my contact preferences so that I can be reached appropriately* | • Contact details input<br>• Privacy settings<br>• LinkedIn integration<br>• Contact form preferences |
+| Speaker/Role Model | *As a speaker, I want to delete my profile(s) so that I can remove my information from the platform if I'm no longer available for speaking opportunities* | • Profile deletion functionality<br>• Confirmation process / deletion alert<br>• Data removal notification |
+| Event Organiser | *As an event organiser, I want to contact potential speakers so that I can discuss speaking opportunities* | • Contact Buttons<br>• Contact mechanism<br>• Professional messaging<br>• Contact privacy<br>• Response tracking |
+| Event Organiser | *As an event organiser, I want to search for speakers based on specific criteria so that I can find appropriate speakers for my events* | • Search functionality<br>• Multiple filter options: Name & Location<br>• Experience level filtering |
+| Event Organiser | *As an event organiser, I want to browse speaker profiles so that I can evaluate their suitability for my event* | • Profile viewing capability<br>• Detailed information display<br>• Professional background<br>• Speaking history |
+| Speaker/Organiser | *As a Speaker/Event Organiser, I want to delete my account so that I can remove all my profiles and information from the platform if I'm no longer interested in speaking opportunities* | • Account deletion functionality<br>• Deletion confirmation steps<br>• Warning about data loss |
+| Admin | *As an admin, I want to manage and moderate content so that the platform maintains high quality and professionalism* | • Profile Deletion Functionality<br>• Profile Editing Capability<br>• Account Deletion Functionality<br>• Account Editing Capability<br>• Profile Creation Form<br>• User Creation Form |
+
+
 <!-- ## Back-end Implementation
 ### API Specification
 
@@ -226,23 +243,6 @@ See V1 (completed Saturday 11 January 2025) of Wireframes [here](https://excalid
 
 #### Wireframe - PAGE NO RESULT
 ![Wireframe - PAGE NO RESULT](./README_images/8-wireframe-pageNoResult.png)
-
-## User Stories
-| User Type | User Stories | Requirements |
-|-----------|--------------|--------------|
-| Guest | *As a guest, I want to discover diverse role models in tech so that I can be inspired about potential career paths* | • Browse functionality<br>• Featured profiles<br>• Success stories<br>• Career path visibility |
-| Guest | *As a guest, I want to learn about different tech specialisations so that I can understand potential career options* | • Specialisation descriptions<br>• Role model experiences<br>• Career path insights<br>• Industry information |
-| Guest | *As a guest, I want to sign up easily so that I can personalise my experience and access premium features like direct contact.* | • Clear registration form<br>• Required fields validation<br>• Privacy policy acceptance<br>• Clear indication of mandatory fields |
-| Speaker/Role Model | *As a speaker, I want to create and manage profile(s) so that event organisers can find me for speaking opportunities* | • Registration functionality<br>• Profile creation form<br>• Profile editing capability<br>• Required fields validation |
-| Speaker/Role Model | *As a speaker/regular user, I want to showcase my areas of expertise so that I can be found for relevant speaking opportunities* | • Specialisation selection<br>• Topics/SME areas input<br>• Experience level indication<br>• Professional background |
-| Speaker/Role Model | *As a speaker, I want to manage my contact preferences so that I can be reached appropriately* | • Contact details input<br>• Privacy settings<br>• LinkedIn integration<br>• Contact form preferences |
-| Speaker/Role Model | *As a speaker, I want to delete my profile(s) so that I can remove my information from the platform if I'm no longer available for speaking opportunities* | • Profile deletion functionality<br>• Confirmation process / deletion alert<br>• Data removal notification |
-| Event Organiser | *As an event organiser, I want to contact potential speakers so that I can discuss speaking opportunities* | • Contact Buttons<br>• Contact mechanism<br>• Professional messaging<br>• Contact privacy<br>• Response tracking |
-| Event Organiser | *As an event organiser, I want to search for speakers based on specific criteria so that I can find appropriate speakers for my events* | • Search functionality<br>• Multiple filter options: Name & Location<br>• Experience level filtering |
-| Event Organiser | *As an event organiser, I want to browse speaker profiles so that I can evaluate their suitability for my event* | • Profile viewing capability<br>• Detailed information display<br>• Professional background<br>• Speaking history |
-| Speaker/Organiser | *As a Speaker/Event Organiser, I want to delete my account so that I can remove all my profiles and information from the platform if I'm no longer interested in speaking opportunities* | • Account deletion functionality<br>• Deletion confirmation steps<br>• Warning about data loss |
-| Admin | *As an admin, I want to manage and moderate content so that the platform maintains high quality and professionalism* | • Profile Deletion Functionality<br>• Profile Editing Capability<br>• Account Deletion Functionality<br>• Account Editing Capability<br>• Profile Creation Form<br>• User Creation Form |
-
 
 ### Logo
 ![](./img/logo.png)
