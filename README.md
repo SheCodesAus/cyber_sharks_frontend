@@ -112,9 +112,6 @@ Our platform serves two primary audience segments:
 ### API Specification
 *WIP*
 
-### Object Definitions
-*WIP*
-
 ### Database Schema
 ![Database Schema V1](./README_images/databaseSchema-v1.png)
 
