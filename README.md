@@ -1,37 +1,5 @@
 # Product Name - To Be Confirmed
 
-<!-- ## Table of Contents
-
-- [Your Product Name](#your-product-name)
-  - [Table of Contents](#table-of-contents)
-  - [Mission Statement](#mission-statement)
-  - [Features](#features)
-    - [Summary](#summary)
-    - [Users](#users)
-    - [Sticky Notes](#sticky-notes)
-    - [Collections](#collections)
-    - [Pages/Endpoint Functionality](#pagesendpoint-functionality)
-    - [Nice To Haves](#nice-to-haves)
-  - [Technical Implementation](#technical-implementation)
-    - [Back-End](#back-end)
-    - [Front-End](#front-end)
-    - [Git \& Deployment](#git--deployment)
-  - [Target Audience](#target-audience)
-  - [Back-end Implementation](#back-end-implementation)
-    - [API Specification](#api-specification)
-    - [Object Definitions](#object-definitions)
-      - [Users](#users-1)
-      - [Sticky Notes](#sticky-notes-1)
-    - [Database Schema](#database-schema)
-  - [Front-end Implementation](#front-end-implementation)
-    - [Wireframes](#wireframes)
-    - [Logo](#logo)
-    - [Colours](#colours)
-      - [Primary](#primary)
-      - [Secondary](#secondary)
-    - [Font](#font) -->
-
-
 ## Mission Statement
 
 Empowering growth by connecting role models and opportunities in tech through a platform for collaboration and inclusivity.
@@ -140,73 +108,15 @@ Our platform serves two primary audience segments:
 | Admin | *As an admin, I want to manage and moderate content so that the platform maintains high quality and professionalism* | • Profile Deletion Functionality<br>• Profile Editing Capability<br>• Account Deletion Functionality<br>• Account Editing Capability<br>• Profile Creation Form<br>• User Creation Form |
 
 
-<!-- ## Back-end Implementation
+## Back-end Implementation
 ### API Specification
-
-| HTTP Method | URL                                 | Purpose                                                                                                                                  | Request Body                                                                                                       | Successful Response Code | Authentication and Authorization                      |
-| :---------- | :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------- | :----------------------- | :---------------------------------------------------- |
-| POST        | /login                              | Allow users to log in                                                                                                                    | ““Username”:”string”, “password”:”string”                                                                          | 200                      | Token auth                                            |
-| POST        | /logout                             | Allow users to log out ( end active session)                                                                                             | ““Username”:”string”, “password”:”string”                                                                          | 200                      | Will clear user log in session \- remove stored token |
-| POST        | /Register                           | Create new student or approver user                                                                                                      | “Username”:”string”, “FullName”: “string” “Email”:”string”,”Password”:”string”, ”Password2”:”string”,              | 201                      | Admin                                                 |
-| PUT         | /Profile/ID                         | Edit user                                                                                                                                | “Username”:”string”, “FullName”: “string” “Email”:”string”, “Avatar”:”string”,  “Bio”:”string”, “Socials”:”string” | 200                      | Admin, approver or student with matching ID           |
-| GET         | /Profile/ID                         | View User profile                                                                                                                        | NA                                                                                                                 | 200                      | Any                                                   |
-| DELETE      | /User/ID                            | Delete user                                                                                                                              | NA                                                                                                                 | 204                      | Admin, approver or student with matching ID           |
-| POST        | /EventCollection                    | Create new Event Collection                                                                                                              | “Title”:”string”, “IsExported”:”boolean” “Approver”: integer                                                       | 201                      | Admin                                                 |
-| PUT         | /EventCollection/Id                 | Update Event collection                                                                                                                  | “Title”:”string”, “IsExported”:”boolean”                                                                           | 200                      | Admin, Approver linked to event?                      |
-| DELETE      | /EventCollection/Id                 | Delete Event collection                                                                                                                  | NA                                                                                                                 | 204                      | Admin                                                 |
-| POST        | /EventBoard/                        | Create new Event board                                                                                                                   | “Title”: “string”, “StartDate”:”datetime”, “EndDate:”datetime”                                                     | 201                      | Admin, approvers                                      |
-| PUT         | /EventBoard/ID                      | Update Event board                                                                                                                       | “Title”: “string”, “StartDate”:”datetime”, “EndDate:”datetime”                                                     | 200                      | Admin, approvers                                      |
-| DELETE      | /EventBoard/ID                      | Delete Event board                                                                                                                       | NA                                                                                                                 | 204                      | Admin or author of event                              |
-| GET         | /EventBoard/ID                      | Get Event board details                                                                                                                  | NA                                                                                                                 | 200                      | Open access                                           |
-| POST        | /stickyNote/                        | Create a new sticky note as Guest user                                                                                                   | “WinComment”:”string”                                                                                              | 201                      | Open access                                           |
-| GET         | /stickyNotes/?Status=Live\&Event.ID | Get Sticky notes for an event  Use query params to filter by event ID and Status                                                         | NA                                                                                                                 | 200                      | Open access                                           |
-| GET         | /stickyNotes/?Event.ID              | Get Sticky notes for an event                                                                                                            | NA                                                                                                                 | 200                      | Admin, approvers                                      |
-| GET         | /stickyNotes/                       | Export sticky notes as CSV (eg:response.setContentType("text/csv")) Can optionally filter by: event ID, Status, isexported, collectionId | NA                                                                                                                 | 200                      | Admin                                                 |
-| PUT         | /stickyNotes/ID                     | Edit sticky note, update status of sticky note to Approved or Archived                                                                   | “WinComment”:”string”                                                                                              | 200                      | Admin, approvers                                      |
-| POST        | /StickyStatus                       | Create available statuses for stickyNotes                                                                                                | “StatusName”:”string”                                                                                              | 201                      | Admin                                                 |
-| GET         | /StickyStatus                       | Get all statuses                                                                                                                         | NA                                                                                                                 | 200                      | Admin                                                 |
+*WIP*
 
 ### Object Definitions
-
-> [!NOTE]  
-> Define the actual objects that your API returns. The example GET method above says it returns “all projects”, so we need to define what a “project” looks like. Example below.
-
-#### Users
-| Field              | Data type |
-| :----------------- | :-------- |
-| *User\_ID (PK)*    |           |
-| *Username*         | string    |
-| FullName           | string    |
-| *Email*            | string    |
-| *Password*         | string    |
-| *Password2*        | string    |
-| Auth\_ID (FK)      | integer   |
-| StickyNoteId (FK)  | integer   |
-| Event\_Id (FK)     | integer   |
-| Collection\_Id(FK) | integer   |
-| Avatar             | string    |
-| Bio                | string    |
-| SocialLink         | string    |
-
-#### Sticky Notes
-| Field                   | Data Type |
-| :---------------------- | :-------- |
-| Sticky\_ID (PK)         | integer   |
-| WinComment              | string    |
-| Guest                   | boolean   |
-| UserId (FK)             | integer   |
-| Event\_Id (FK)          | integrer  |
-| Collection\_Id (FK)     | integrer  |
-| Sticky\_Status\_ID (FK) | integrer  |
-
-> [!NOTE]  
-> ... etc
+*WIP*
 
 ### Database Schema
-> [!NOTE]  
-> Insert an image of your database schema (could be a photo of a hand-drawn schema or a screenshot of a schema created using a tool such as ​​https://drawsql.app/). Example below.  -->
-
-<!-- [Our database schema](./img/schema.png) -->
+![Database Schema V1](./README_images/databaseSchema-v1.png)
 
 ## Front-end Implementation
 
