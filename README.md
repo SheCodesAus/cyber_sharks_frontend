@@ -194,7 +194,7 @@ Our platform serves two primary audience segments:
 | 13     | GET              | /portfolios/:id/likes           | Retrieve the number of likes on a profile              | None                                                                                                         | 200                            | All users                              |
 
 ### Database Schema
-![Database Schema V2](./README_images/databaseSchema-v2.png)
+![Database Schema V3](./README_images/databaseSchema-v3.png)
 
 ## Front-end Implementation
 
