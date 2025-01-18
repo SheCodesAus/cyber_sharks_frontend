@@ -193,7 +193,7 @@ Our platform serves two primary audience segments:
 | 12     | GET              | /portfolios/search/name or location | Search profiles with filters                           | Query param: `Name`, `Location`, `Specialisation`                                                           | 200                            | All users                              |
 | 13     | GET              | /portfolios/:id/likes           | Retrieve the number of likes on a profile              | None                                                                                                         | 200                            | All users                              |
 
-### Database Schemas
+### Database Schema
 ![Database Schema V3](./README_images/databaseSchema-v3.png)
 
 ## Front-end Implementation
