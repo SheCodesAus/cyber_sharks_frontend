@@ -3,10 +3,17 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        cormorant: ["'Cormorant Garamond'", "serif"],
+        openSans: ["'Open Sans'", "sans-serif"],
+      },
       colors: {
         customWhite: "#fffdfc",
         customBlack: "#1a1a1a",
-        accent: "#F59E0B",
+        // which orange???
+        accent1: "#FF6606",
+        accent2: "#d35400",
+        accent3: "#FF6600",
       },
     },
   },
