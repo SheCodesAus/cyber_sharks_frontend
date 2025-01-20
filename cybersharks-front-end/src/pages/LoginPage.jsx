@@ -1,24 +1,43 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+// api
+import postLogin from "../api/post-login";
 
 function LoginPage() {
-  const [signUpForm, setSignUpForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
+  const [credentials, setCredentials] = useState({
+    username: "",
     password: "",
   });
 
-  function onSubmit(e) {
+  const [errorMsg, setErrorMsg] = useState("");
+
+  // sending credentials to api
+  async function onSubmit(e) {
     e.preventDefault();
-    // send form data to signup API
-    console.log("Submitted Data:", signUpForm);
+
+    if (credentials.username && credentials.password) {
+      try {
+        const response = await postLogin(
+          credentials.username,
+          credentials.password
+        );
+        console.log("Login successful:", response);
+      } catch (error) {
+        console.error("Login failed:", error.message);
+        setErrorMsg(error.message);
+      }
+    } else {
+      setErrorMsg("Both username and password are required");
+    }
   }
+
+  console.log(credentials);
+  console.log(errorMsg);
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setSignUpForm((prevState) => ({
+    setCredentials((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -28,16 +47,16 @@ function LoginPage() {
     <div className="flex flex-col h-screen items-center justify-center bg-customWhite">
       <form
         onSubmit={onSubmit}
-        className="flex flex-col gap-4 justify-center w-[30%] mx-auto"
+        className="flex flex-col gap-4 justify-center mx-auto"
       >
         <label className="input input-bordered flex items-center gap-2">
-          Email
+          Username
           <input
-            type="email"
+            type="text"
             className="grow w-full"
-            name="email"
-            id="email"
-            value={signUpForm.email}
+            name="username"
+            id="sername"
+            value={credentials.email}
             onChange={handleChange}
           />
         </label>
@@ -48,10 +67,13 @@ function LoginPage() {
             className="grow w-full"
             name="password"
             id="password"
-            value={signUpForm.password}
+            value={credentials.password}
             onChange={handleChange}
           />
         </label>
+        {errorMsg && (
+          <p className="text-red-500 text-base text-center">{errorMsg}</p>
+        )}
         <Link
           to="/signup"
           className="mb-3 text-center font-openSans hover:text-accent1"

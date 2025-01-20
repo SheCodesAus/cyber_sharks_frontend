@@ -6,6 +6,7 @@ function SignupPage() {
     firstName: "",
     lastName: "",
     email: "",
+    usernme: "",
     password: "",
   });
 
@@ -31,7 +32,7 @@ function SignupPage() {
       </p>
       <form
         onSubmit={onSubmit}
-        className="flex flex-col gap-4 justify-center w-[30%] mx-auto"
+        className="flex flex-col gap-4 justify-center mx-auto"
       >
         <label className="input input-bordered flex items-center gap-2">
           First Name
@@ -63,6 +64,17 @@ function SignupPage() {
             name="email"
             id="email"
             value={signUpForm.email}
+            onChange={handleChange}
+          />
+        </label>
+        <label className="input input-bordered flex items-center gap-2">
+          Username
+          <input
+            type="text"
+            className="grow w-full"
+            name="username"
+            id="username"
+            value={signUpForm.username}
             onChange={handleChange}
           />
         </label>
