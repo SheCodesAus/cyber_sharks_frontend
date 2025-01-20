@@ -18,8 +18,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     // Putting our NavBar as the main component will causes the children to render in the <Outlet />
-    element: <NavBar />,
-    children: [{ path: "/", element: <HomePage /> }],
+    // element: <NavBar />,
+    //     children: [{ path: "/", element: <HomePage /> }],
+    //     children: [{ path: "/signup", element: <SignupPage /> }],
+    //   },
+    // ]);
+    element: <HomePage />, // HomePage renders Header, including NavBar
     children: [{ path: "/signup", element: <SignupPage /> }],
   },
 ]);

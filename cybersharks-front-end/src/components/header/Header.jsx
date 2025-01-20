@@ -5,19 +5,24 @@ import Button from "../Button";
 function Header() {
   return (
     <header className="w-full py-4 px-6 flex justify-between items-center bg-customWhite">
-      {/* Logo */}
-      <Link
-        to="/"
-        className="text-2xl font-cormorant font-bold text-customBlack"
-      >
-        Tech Speakers/Prism
-      </Link>
+      {/* Left Section: Logo and Navigation */}
+      <div className="flex items-center gap-6">
+        {/* Logo */}
+        <Link
+          to="/"
+          className="text-2xl font-cormorant font-bold text-customBlack"
+        >
+          NameName
+        </Link>
 
-      {/* include existing NavBar */}
-      <div className="flex items-center gap-4">
+        {/* Navigation Links */}
         <NavBar />
-        <Button>Join Us</Button>
       </div>
+
+      {/* Right Section: Button */}
+      <Button className="bg-customBlack text-customWhite hover:bg-gray-800 transition-all">
+        Join Us
+      </Button>
     </header>
   );
 }
