@@ -172,3 +172,56 @@ function HomePage() {
 }
 
 export default HomePage;
+
+// import Header from "../features/homepage/Header";
+// import Button from "../components/Button";
+// import FeaturedSpeakers from "../features/homepage/FeaturedSpeakers";
+
+// const speakersData = [
+//   {
+//     name: "Tech Leader 1",
+//     role: "Senior Developer",
+//     location: "Brisbane",
+//     tags: ["React", "Cloud"],
+//   },
+//   {
+//     name: "Tech Leader 2",
+//     role: "Software Engineer",
+//     location: "Sydney",
+//     tags: ["Python", "AI"],
+//   },
+//   {
+//     name: "Tech Leader 3",
+//     role: "Tech Lead",
+//     location: "Melbourne",
+//     tags: ["JavaScript", "Node.js"],
+//   },
+//   {
+//     name: "Tech Leader 4",
+//     role: "Engineer",
+//     location: "Adelaide",
+//     tags: ["CSS", "Web"],
+//   },
+//   {
+//     name: "Tech Leader 5",
+//     role: "Architect",
+//     location: "Perth",
+//     tags: ["AWS", "DevOps"],
+//   },
+// ];
+
+// function HomePage() {
+//   return (
+//     <div className="min-h-screen bg-customWhite text-customBlack">
+//       <Header />
+
+//       {/* Hero Section */}
+//       <main>{/* Other sections */}</main>
+
+//       {/* Featured Speakers */}
+//       <FeaturedSpeakers speakers={speakersData} />
+//     </div>
+//   );
+// }
+
+// export default HomePage;
