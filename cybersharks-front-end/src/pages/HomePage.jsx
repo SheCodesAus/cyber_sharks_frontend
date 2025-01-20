@@ -94,8 +94,9 @@
 
 // export default HomePage;
 
-import Header from "../components/header/Header";
+import Header from "../features/homepage/Header";
 import Button from "../components/Button";
+import FeaturedSpeakers from "../features/homepage/FeaturedSpeakers";
 
 function HomePage() {
   return (
@@ -147,6 +148,9 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Featured Speakers */}
+      <FeaturedSpeakers />
 
       {/* Call-to-Action Section */}
       {/* <section className="bg-accent3 py-12 text-customWhite">
