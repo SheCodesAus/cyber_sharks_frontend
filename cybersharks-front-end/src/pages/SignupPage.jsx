@@ -25,14 +25,13 @@ function SignupPage() {
 
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-customWhite">
-      <p className="font-cormorant text-customBlack text-[3rem] text-center w-[80%]">
+      <p className="font-cormorant text-customBlack text-[1.8rem] text-center w-[80%] h-auto">
         Intro:Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut
         ducimus, impedit officia commodi quis neque sunt et doloribus
-        consequatur? Itaque vitae iste,
       </p>
       <form
         onSubmit={onSubmit}
-        className="flex flex-col gap-4 justify-center w-[70%] mx-auto"
+        className="flex flex-col gap-4 justify-center w-[30%] mx-auto"
       >
         <label className="input input-bordered flex items-center gap-2">
           First Name
@@ -60,7 +59,7 @@ function SignupPage() {
           Email
           <input
             type="email"
-            className="grow"
+            className="grow w-full"
             name="email"
             id="email"
             value={signUpForm.email}
@@ -71,7 +70,7 @@ function SignupPage() {
           Password
           <input
             type="password"
-            className="grow"
+            className="grow w-full"
             name="password"
             id="password"
             value={signUpForm.password}

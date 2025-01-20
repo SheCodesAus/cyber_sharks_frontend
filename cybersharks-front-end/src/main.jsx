@@ -11,16 +11,18 @@ import HomePage from "./pages/HomePage.jsx";
 // Here we import our components
 import NavBar from "./components/NavBar.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 
 // Here we create our router and tell it whats pages to render at what path
 const router = createBrowserRouter([
-  // These are the three routes!
   {
     path: "/",
-    // Putting our NavBar as the main component will causes the children to render in the <Outlet />
-    element: <NavBar />,
-    children: [{ path: "/", element: <HomePage /> }],
-    children: [{ path: "/signup", element: <SignupPage /> }],
+    element: <NavBar />, 
+    children: [
+      { path: "/", element: <HomePage /> }, 
+      { path: "/signup", element: <SignupPage /> }, 
+      { path: "/login", element: <LoginPage /> }, 
+    ],
   },
 ]);
 
