@@ -30,13 +30,6 @@ const speakers = [
     location: "Adelaide",
     tags: ["CSS", "Web"],
   },
-  {
-    id: 5,
-    name: "Tech Leader 5",
-    role: "Architect",
-    location: "Perth",
-    tags: ["AWS", "DevOps"],
-  },
 ];
 
 const FeaturedSpeakers = () => {
@@ -53,7 +46,7 @@ const FeaturedSpeakers = () => {
         Featured Speakers
       </h2>
       <div className="relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {speakers.map((speaker, index) => (
             <SpeakerCard key={index} {...speaker} />
           ))}
