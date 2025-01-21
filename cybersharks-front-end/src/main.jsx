@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 // Tawilwind CSS
-import "./styles/globals.css";
+import "./index.css";
 
 // Here we import out pages
 import HomePage from "./pages/HomePage.jsx";
