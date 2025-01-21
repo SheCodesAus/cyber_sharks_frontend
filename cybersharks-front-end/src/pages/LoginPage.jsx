@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 // api
 import postLogin from "../api/post-login";
+import { useAuth } from "../hooks/use-auth";
 
 function LoginPage() {
+  const navigate = useNavigate();
+  // states
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
-
+  const { auth, setAuth } = useAuth();
   const [errorMsg, setErrorMsg] = useState("");
 
   // sending credentials to api
@@ -22,6 +26,11 @@ function LoginPage() {
           credentials.username,
           credentials.password
         );
+        window.localStorage.setItem("token", response.token);
+        setAuth({
+          token: response.token,
+        });
+        navigate("/");
         console.log("Login successful:", response);
       } catch (error) {
         console.error("Login failed:", error.message);

@@ -12,16 +12,17 @@ import HomePage from "./pages/HomePage.jsx";
 import NavBar from "./components/NavBar.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import { AuthProvider } from "./components/AuthProvider.jsx";
 
 // Here we create our router and tell it whats pages to render at what path
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <NavBar />, 
+    element: <NavBar />,
     children: [
-      { path: "/", element: <HomePage /> }, 
-      { path: "/signup", element: <SignupPage /> }, 
-      { path: "/login", element: <LoginPage /> }, 
+      { path: "/", element: <HomePage /> },
+      { path: "/signup", element: <SignupPage /> },
+      { path: "/login", element: <LoginPage /> },
     ],
   },
 ]);
@@ -29,6 +30,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* Here we wrap our app in the router provider so the pages render */}
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
