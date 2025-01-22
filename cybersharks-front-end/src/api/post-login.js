@@ -1,14 +1,14 @@
 async function postLogin(username, password) {
-  //   const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
-  const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
+
+const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
 
   try {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Specify the data format
+        "Content-Type": "application/json", 
       },
-      body: JSON.stringify({ username, password }), // Shortened object syntax
+      body: JSON.stringify({ username, password }), 
     });
 
     // Check if the response status is not OK (e.g., 400 or 500 series errors)
