@@ -15,7 +15,7 @@ const IntroSection = () => {
           </p>
           <div>
             <Button className="bg-customBlack text-customWhite rounded-full px-6 py-3 hover:bg-gray-800 transition-all">
-              Discover Speakers
+              Find Speakers
             </Button>
           </div>
         </div>
