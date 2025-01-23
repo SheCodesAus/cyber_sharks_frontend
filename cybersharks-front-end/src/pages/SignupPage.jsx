@@ -1,19 +1,32 @@
 import { useState } from "react";
 import Button from "../components/Button";
+import postSignUp from "../api/post-signup";
 
 function SignupPage() {
   const [signUpForm, setSignUpForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    usernme: "",
+    username: "",
     password: "",
   });
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     // send form data to signup API
-    console.log("Submitted Data:", signUpForm);
+    try {
+      const response = await postSignUp(
+        signUpForm.username,
+        signUpForm.password,
+        signUpForm.email,
+        signUpForm.firstName,
+        signUpForm.lastName
+      );
+      console.log("Sign up successful:", response);
+    } catch (error) {
+      console.error("Signup failed:", error.message);
+      setErrorMsg(error.message);
+    }
   }
 
   function handleChange(e) {
