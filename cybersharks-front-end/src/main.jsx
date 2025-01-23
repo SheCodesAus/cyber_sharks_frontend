@@ -17,14 +17,9 @@ import Footer from "./components/Footer.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <NavBar />
-        <HomePage />
-        <Footer />
-      </>
-    ),
-    children: [{ path: "/signup", element: <SignupPage /> }],
+  
+    children: [{path: "/", element: <HomePage />},
+      { path: "/signup", element: <SignupPage /> }],
   },
 ]);
 // const router = createBrowserRouter([

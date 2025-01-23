@@ -29,7 +29,7 @@ const MissionStatement = () => {
           href="#"
           className="text-sm underline hover:text-accent3 transition-colors mt-4"
         >
-          Learn More >
+          Learn More 
         </a>
       </div>
     </div>
