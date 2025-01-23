@@ -65,8 +65,8 @@ function LoginPage() {
               type="text"
               className="grow w-full"
               name="username"
-              id="sername"
-              value={credentials.email}
+              id="username"
+              value={credentials.username}
               onChange={handleChange}
             />
           </label>
