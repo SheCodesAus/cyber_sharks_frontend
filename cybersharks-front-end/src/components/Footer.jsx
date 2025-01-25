@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-black text-neutral-content p-10 border-t border-gray-800">
-      <div className="bg-black text-customWhite">
+    <footer className="footer bg-[#1a1a1a] text-[#FFFEFD] p-10 border-t border-gray-800">
+      <div className="bg-[#1a1a1a] text-[#FFFEFD]">
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="grid grid-cols-4 gap-8">
             {/* Brand Section */}
             <div className="col-span-1">
               <Link to="/" className="text-2xl font-cormorant font-bold">
-                NameName
+                Prism
               </Link>
             </div>
 
             {/* Navigation */}
             <div className="col-span-1">
-              <h6 className="uppercase text-sm mb-4 text-gray-400">
+              {/* <h6 className="uppercase text-sm mb-4 text-gray-400">
                 Navigation
-              </h6>
+              </h6> */}
               <div className="flex flex-col space-y-2">
                 <Link to="/about" className="hover:text-accent3">
                   About
@@ -33,7 +33,7 @@ const Footer = () => {
             </div>
 
             {/* Social */}
-            <div className="col-span-1">
+            {/* <div className="col-span-1">
               <h6 className="uppercase text-sm mb-4 text-gray-400">Social</h6>
               <div className="flex space-x-4">
                 <a href="https://twitter.com" className="hover:text-accent3">
@@ -70,7 +70,7 @@ const Footer = () => {
                   </svg>
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
