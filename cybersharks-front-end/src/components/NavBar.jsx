@@ -138,9 +138,9 @@ const NavBar = () => {
       </nav>
 
       {/* Outlet for Nested Routes */}
-      <div className="pt-16">
+      {/* <div className="pt-16">
         <Outlet />
-      </div>
+      </div> */}
     </>
   );
 };

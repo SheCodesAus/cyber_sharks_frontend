@@ -163,7 +163,7 @@ const FeaturedSpeakers = () => {
         Featured Speakers
       </h2>
       <div className="relative">
-        <style jsx>{`
+        <style>{`
           .slick-prev:before,
           .slick-next:before {
             color: black;

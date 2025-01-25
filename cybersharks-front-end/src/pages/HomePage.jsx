@@ -26,7 +26,6 @@ import Footer from "../components/Footer";
 function HomePage() {
   return (
     <div className="min-h-screen bg-customWhite text-customBlack">
-      <NavBar />
       <main className="pt-16">
         <IntroSection />
 
@@ -34,7 +33,6 @@ function HomePage() {
         <StatsSection />
         <MissionStatement />
       </main>
-      <Footer />
     </div>
   );
 }
