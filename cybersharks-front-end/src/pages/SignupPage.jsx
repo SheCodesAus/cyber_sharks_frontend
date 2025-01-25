@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/use-auth";
 import Button from "../components/Button";
 import postSignUp from "../api/post-signup";
-
+import postLogin from "../api/post-login";
 function SignupPage() {
+  const navigate = useNavigate();
+  const { auth, setAuth } = useAuth();
   const [signUpForm, setSignUpForm] = useState({
     firstName: "",
     lastName: "",
@@ -10,22 +14,46 @@ function SignupPage() {
     username: "",
     password: "",
   });
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   async function onSubmit(e) {
     e.preventDefault();
-    // send form data to signup API
+
+    // Check for empty fields
+    const { firstName, lastName, email, username, password } = signUpForm;
+    if (!firstName || !lastName || !email || !username || !password) {
+      setErrorMsg("All fields are required. Please fill in every field.");
+      return;
+    }
+
+    // Clear error message before submitting
+    setErrorMsg("");
+
     try {
+      setIsLoading(true);
+
+      // Call the signup API
       const response = await postSignUp(
-        signUpForm.username,
-        signUpForm.password,
-        signUpForm.email,
-        signUpForm.firstName,
-        signUpForm.lastName
+        username,
+        password,
+        email,
+        firstName,
+        lastName
       );
       console.log("Sign up successful:", response);
+
+      // Automatically log in the user after signup
+      const login = await postLogin(username, password);
+      window.localStorage.setItem("token", login.token);
+      setAuth({ token: login.token });
+      navigate("/");
+      // Redirect to the homepage or search page?
+      navigate("/");
     } catch (error) {
       console.error("Signup failed:", error.message);
       setErrorMsg(error.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -36,6 +64,8 @@ function SignupPage() {
       [name]: value,
     }));
   }
+
+  console.log(errorMsg);
 
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-customWhite">
@@ -48,7 +78,7 @@ function SignupPage() {
           onSubmit={onSubmit}
           className="flex flex-col gap-4 justify-center mx-auto"
         >
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2 bg-white">
             First Name
             <input
               type="text"
@@ -57,9 +87,10 @@ function SignupPage() {
               id="firstName"
               value={signUpForm.firstName}
               onChange={handleChange}
+              required
             />
           </label>
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2  bg-white">
             Last Name
             <input
               type="text"
@@ -68,9 +99,10 @@ function SignupPage() {
               id="lastName"
               value={signUpForm.lastName}
               onChange={handleChange}
+              required
             />
           </label>
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2  bg-white">
             Email
             <input
               type="email"
@@ -79,9 +111,10 @@ function SignupPage() {
               id="email"
               value={signUpForm.email}
               onChange={handleChange}
+              required
             />
           </label>
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2  bg-white">
             Username
             <input
               type="text"
@@ -90,9 +123,10 @@ function SignupPage() {
               id="username"
               value={signUpForm.username}
               onChange={handleChange}
+              required
             />
           </label>
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2  bg-white">
             Password
             <input
               type="password"
@@ -101,9 +135,14 @@ function SignupPage() {
               id="password"
               value={signUpForm.password}
               onChange={handleChange}
+              required
             />
           </label>
-          <Button className="mx-auto mt-2" name="Sign up"></Button>
+          <p className="text-center">{errorMsg}</p>
+          <Button
+            className="mx-auto mt-2"
+            name={isLoading ? "Loading..." : "Sign up"}
+          ></Button>
         </form>
       </div>
     </div>

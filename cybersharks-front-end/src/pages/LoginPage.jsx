@@ -73,6 +73,7 @@ function LoginPage() {
           <label className="input input-bordered flex items-center gap-2 ">
             Password
             <input
+              data-theme="mytheme"
               type="password"
               className="grow w-full"
               name="password"
