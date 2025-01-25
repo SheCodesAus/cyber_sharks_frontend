@@ -4,15 +4,13 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import "./index.css";
 // Tawilwind CSS
 
-
 // import pages and components
 import HomePage from "./pages/HomePage.jsx";
-import SignupPage from "./pages/SignupPage.jsx";
 import NavBar from "./components/NavBar.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
-// import Footer from "./components/Footer.jsx";
+// import Footer from "./components/Footer~.jsx";
 
 // create a router
 const router = createBrowserRouter([
