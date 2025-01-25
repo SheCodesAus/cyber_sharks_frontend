@@ -69,7 +69,7 @@ function SignupPage() {
 
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-customWhite">
-      <div className="bg-white shadow-md rounded-lg p-8 w-[40%]">
+      <div className="bg-white shadow-md rounded-lg p-8 sm:w-[40%]">
         <p className="font-cormorant text-customBlack text-[1.5rem] text-center  h-auto">
           Intro:Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut
           ducimus, impedit officia commodi quis neque sunt et doloribus

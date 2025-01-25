@@ -41,9 +41,6 @@ function LoginPage() {
     }
   }
 
-  console.log(credentials);
-  console.log(errorMsg);
-
   function handleChange(e) {
     const { name, value } = e.target;
     setCredentials((prevState) => ({
@@ -54,12 +51,12 @@ function LoginPage() {
 
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-customWhite">
-      <div className="bg-white shadow-md rounded-lg p-8 w-[40%]">
+      <div className="bg-white shadow-md rounded-lg p-8 sm:w-[40%]">
         <form
           onSubmit={onSubmit}
           className="flex flex-col gap-4 justify-center mx-auto"
         >
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2 bg-white">
             Username
             <input
               type="text"
@@ -70,7 +67,7 @@ function LoginPage() {
               onChange={handleChange}
             />
           </label>
-          <label className="input input-bordered flex items-center gap-2 ">
+          <label className="input input-bordered flex items-center gap-2  bg-white">
             Password
             <input
               data-theme="mytheme"

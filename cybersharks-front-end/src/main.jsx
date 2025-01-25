@@ -10,17 +10,15 @@ import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
-import { AuthProvider } from "./components/AuthProvider.jsx";
 import CreatePortfolio from "./pages/CreatePortfolio.jsx";
+import { AuthProvider } from "./components/AuthProvider.jsx";
 
 // Layout component
 const Layout = () => {
   return (
     <div>
       <NavBar />
-      <main>
-        <Outlet /> {/* This renders the child routes */}
-      </main>
+      <Outlet /> {/* This renders the child routes */}
       <Footer />
     </div>
   );
