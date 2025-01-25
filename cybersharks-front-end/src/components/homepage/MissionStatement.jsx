@@ -1,38 +1,20 @@
 import React from "react";
 
-// const MissionStatement = () => {
-//   return (
-//     <div className="bg-accent1 text-customWhite p-8 rounded-lg shadow-lg max-w-6xl mx-auto my-8">
-//       <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
-//       <p>
-//         We believe tech needs diverse voices and perspectives. That's why we
-//         work to connect event organisers with inspiring speakers who share your
-//         path of making your journey unforgettable.
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default MissionStatement;
-
 const MissionStatement = () => {
   return (
-    <div className="bg-black text-customWhite py-16 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col items-left">
-        <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
-        <p>
-          We believe tech needs diverse voices and perspectives. That's why we
-          work to connect event organizers with inspiring speakers who share
-          your path of making your journey unforgettable.
+    <section className="bg-[#1a1a1a] text-[#FFFEFD]">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-bold mb-4">That's Why</h2>
+        <p className="text-lg max-w-2xl mb-6">
+          Our mission is to increase the diverse voices and perspectives. That's
+          why we work to connect event organizers with inspiring speakers who
+          share your path of making your journey unforgettable.
         </p>
-        <a
-          href="#"
-          className="text-sm underline hover:text-accent3 transition-colors mt-4"
-        >
-          Learn More >
-        </a>
+        <button className="bg-customBlack text-customWhite px-6 py-2 rounded hover:bg-accent3 transition-colors">
+          Find Speakers
+        </button>
       </div>
-    </div>
+    </section>
   );
 };
 
