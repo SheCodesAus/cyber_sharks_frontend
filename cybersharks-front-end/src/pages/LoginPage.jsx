@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // api
 import postLogin from "../api/post-login";
 import { useAuth } from "../hooks/use-auth";
-import Search from '../components/Search';
+import Search from "../components/Search";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ function LoginPage() {
     password: "",
   });
   const { auth, setAuth } = useAuth();
+  // !todo clear error msg when user put info
   const [errorMsg, setErrorMsg] = useState("");
 
   // sending credentials to api
@@ -91,10 +92,6 @@ function LoginPage() {
           </Link>
           <Button className="mx-auto mt-2" name="Login"></Button>
         </form>
-      </div>
-      {/* Search bar added below for demo purposes */}
-      <div className="mt-8 w-full">
-        <Search />
       </div>
     </div>
   );
