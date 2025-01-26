@@ -1,9 +1,17 @@
+import { useAuth } from "../hooks/use-auth";
 import FormSection from "../components/FormSection";
+import Button from "../components/Button";
+import { useState } from "react";
 
+// console.log(auth);
 function CreatePortfolio() {
+  // checking backend
+  const [newPortpolioForm, setNewPortfolioForm] = useState({ username: "" });
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-customWhite">
-      <h1 className="pt-20">Start your portfolio </h1>
+      <h1 className="pt-20 w-full text-left px-4 font-bold text-[1.5rem]">
+        Start your portfolio{" "}
+      </h1>
       <form className="flex flex-col px-4 py-9 justify-center items-center bg-white shadow-md rounded-lg w-full max-w-7xl">
         {/* Name */}
         <FormSection
@@ -11,7 +19,7 @@ function CreatePortfolio() {
           description="This is the name that will appear on your public profile. Use your real name or a professional alias that represents you best."
         >
           <div className="flex flex-col gap-2">
-            <label className="input input-bordered flex items-center gap-2 bg-white w-full">
+            <label className="input input-bordered flex items-center gap-2 bg-white w-full text-[13px]">
               First Name
               <input
                 type="text"
@@ -21,7 +29,7 @@ function CreatePortfolio() {
                 required
               />
             </label>
-            <label className="input input-bordered flex items-center gap-2 bg-white ">
+            <label className="input input-bordered flex items-center gap-2 bg-white text-[13px]">
               Last Name
               <input
                 type="text"
@@ -39,7 +47,7 @@ function CreatePortfolio() {
           title="Biography"
           description="Introduce yourself with a brief biography. Include your professional background, key achievements, and passions."
         >
-          <textarea className="bg-red-300 w-full min-h-64" />
+          <textarea className="border border-gray-300 w-full min-h-64 rounded-lg" />
         </FormSection>
 
         {/* Experience Level */}
@@ -53,9 +61,9 @@ function CreatePortfolio() {
         {/* Photo */}
         <FormSection
           title="Photo"
-          description="Upload a profile picture using a publicly accessible image URL. Recommended dimensions: 400x400 pixels."
+          description="Upload a profile picture using a publicly accessible image. Recommended dimensions: 400x400 pixels."
         >
-          <input className="bg-red-300 w-full" />
+          <input type="file" className="file-input w-full max-w-xs" />
         </FormSection>
 
         {/* Contact */}
@@ -64,7 +72,7 @@ function CreatePortfolio() {
           description="Provide your contact details so visitors can connect with you directly. Include an email address and a LinkedIn profile."
         >
           <div className="flex flex-col gap-2">
-            <label className="input input-bordered flex items-center gap-2 bg-white w-full">
+            <label className="input input-bordered flex items-center gap-2 bg-white w-full text-[12px]">
               LinkedIn
               <input
                 type="text"
@@ -74,7 +82,7 @@ function CreatePortfolio() {
                 required
               />
             </label>
-            <label className="input input-bordered flex items-center gap-2 bg-white ">
+            <label className="input input-bordered flex items-center gap-2 bg-white text-[12px] ">
               Email
               <input
                 type="text"
@@ -110,6 +118,10 @@ function CreatePortfolio() {
         >
           <input className="bg-red-300 w-full" />
         </FormSection>
+        <Button
+          className="mt-5 w-[70%] sm:w-[40%]"
+          name="Create your portfolilo"
+        ></Button>
       </form>
     </div>
   );
