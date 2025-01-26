@@ -1,4 +1,6 @@
-import NavBar from "../components/NavBar";
+import React from 'react';
+import Search from '../components/Search';
+import AdvancedSearch from '../components/AdvancedSearch';
 import IntroSection from "../components/homepage/IntroSection";
 import StatsSection from "../components/homepage/StatsSection";
 import FeaturedSpeakers from "../components/homepage/FeaturedSpeakers";
