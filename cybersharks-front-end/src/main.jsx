@@ -10,13 +10,22 @@ import NavBar from "./components/NavBar.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
-// import Footer from "./components/Footer~.jsx";
+import Footer from "./components/Footer.jsx";
 
+const Layout = () => {
+  return (
+    <div>
+      <NavBar />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+};
 // create a router
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <NavBar />,
+    element: <Layout />,
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/signup", element: <SignupPage /> },
