@@ -2,9 +2,10 @@ import React from "react";
 
 const MissionStatement = () => {
   return (
-    <section className="bg-[#1a1a1a] text-[#FFFEFD] py-20 pb-32">
-      {" "}
-      {/* Added pb-32 */}
+    <section
+      id="mission-statement"
+      className="bg-[#1a1a1a] text-[#FFFEFD] py-20 pb-32"
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="md:w-2/3">
           <h2 className="text-4xl font-serif font-bold leading-tight mb-4">
