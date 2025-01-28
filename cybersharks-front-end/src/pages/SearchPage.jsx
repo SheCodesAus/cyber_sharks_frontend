@@ -147,6 +147,13 @@ const speakers = [
     location: "Brisbane",
     tags: ["Design", "UX", "Figma"],
   },
+  {
+    id: 15,
+    name: "Ally Gator",
+    role: "CEO",
+    location: "Perth",
+    tags: ["Design", "UX", "Candles"],
+  },
 ];
 
 const SearchPage = () => {
@@ -156,7 +163,7 @@ const SearchPage = () => {
         <Search />
 
         {/* Speaker Cards Display */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {speakers.map((speaker) => (
             <SpeakerCard key={speaker.id} {...speaker} />
           ))}
