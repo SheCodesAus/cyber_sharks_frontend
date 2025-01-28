@@ -18,18 +18,16 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="bg-[#1a1a1a] text-[#FFFEFD] py-20 pt-32">
-      {" "}
-      {/* Added pt-32 */}
+    <section
+      id="stats-section"
+      className="bg-[#1a1a1a] text-[#FFFEFD] py-20 pt-32"
+    >
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-start justify-between gap-12">
-        {/* Title */}
         <div className="md:w-1/3 flex items-center">
           <h2 className="text-4xl font-serif font-bold leading-tight mt-8 md:mt-14">
             The Current Scenario
           </h2>
         </div>
-
-        {/* Stats */}
         <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-3 gap-12">
           {stats.map((stat, index) => (
             <StatsCard
