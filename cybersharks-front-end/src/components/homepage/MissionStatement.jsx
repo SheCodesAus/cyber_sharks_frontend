@@ -1,6 +1,6 @@
 import React from "react";
 
-const MissionStatement = () => {
+function MissionStatement() {
   return (
     <section
       id="mission-statement"
@@ -42,6 +42,6 @@ const MissionStatement = () => {
       </div>
     </section>
   );
-};
+}
 
 export default MissionStatement;
