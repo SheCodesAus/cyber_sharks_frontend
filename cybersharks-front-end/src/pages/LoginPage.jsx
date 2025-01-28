@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // api
 import postLogin from "../api/post-login";
 import { useAuth } from "../hooks/use-auth";
-import Search from '../components/Search';
+import Search from "../components/Search";
 
 function LoginPage() {
   const navigate = useNavigate();
