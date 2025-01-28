@@ -1,39 +1,46 @@
 // import { Link, Outlet } from "react-router-dom";
+// // import { useState, useEffect } from "react";
 // import Button from "./Button";
+
+// // const NavBar = () => {
+// //   const [navBackground, setNavBackground] = useState(
+// //     "bg-customWhite text-customBlack"
+// //   );
 
 // const NavBar = () => {
 //   return (
 //     <>
-//       <nav className="w-full py-4 px-6 bg-customWhite fixed top-0 left-0 shadow-md z-50 flex justify-between items-center">
-//         {/* Logo */}
-//         <Link
-//           to="/"
-//           className="text-2xl font-cormorant font-bold text-customBlack"
-//         >
-//           Prism
-//         </Link>
-
-//         {/* Navigation Links */}
-//         <div className="flex gap-6 text-sm font-openSans text-gray-600">
-//           {/* <Link to="/search" className="hover:text-customBlack">
-//             Search
-//           </Link> */}
-//           <Link to="/about" className="hover:text-customBlack">
-//             About
+//       <nav className="w-full fixed top-0 left-0 z-50 bg-white text-black border-b border-gray-200">
+//         <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+//           {" "}
+//           {/* Changed py-4 to py-6 */}
+//           {/* Logo */}
+//           <Link
+//             to="/"
+//             className="text-3xl font-serif hover:opacity-80 transition-colors"
+//           >
+//             Prism.
 //           </Link>
-//           <Link to="/how-it-works" className="hover:text-customBlack">
-//             How It Works
-//           </Link>
+//           {/* Navigation Links */}
+//           <div className="flex items-center space-x-8 text-base">
+//             <Link to="/about" className="hover:opacity-80 transition-colors">
+//               About
+//             </Link>
+//             <Link
+//               to="/create-portfolio"
+//               className="whitespace-nowrap hover:opacity-80 transition-colors"
+//             >
+//               Create Portfolio
+//             </Link>
+//             <Button className="bg-black px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all">
+//               Login
+//             </Button>
+//           </div>
 //         </div>
-
-//         {/* Join Platform Button */}
-//         <Button className="bg-customBlack text-customWhite hover:bg-gray-800 transition-all">
-//           Join Platform
-//         </Button>
 //       </nav>
 
 //       {/* Outlet for Nested Routes */}
-//       <div className="pt-16">
+//       <div className="pt-2">
 //         <Outlet />
 //       </div>
 //     </>
@@ -42,34 +49,76 @@
 
 // export default NavBar;
 
-// import { Link, Outlet } from "react-router-dom";
+// import { Link, Outlet, useLocation } from "react-router-dom";
 // import Button from "./Button";
 
 // const NavBar = () => {
+//   const location = useLocation();
+
 //   return (
 //     <>
-//       <nav className="w-full py-4 px-6 bg-customWhite fixed top-0 left-0 shadow-md z-50 flex justify-between items-center">
-//         {/* Logo */}
-//         <Link
-//           to="/"
-//           className="text-2xl font-cormorant font-bold text-customBlack"
-//         >
-//           Role Models
-//         </Link>
-
-//         {/* Navigation Links */}
-//         <div className="flex gap-6 text-sm font-openSans text-gray-600">
-//           <Link to="/about" className="hover:text-customBlack">
-//             About
+//       <nav className="w-full fixed top-0 left-0 z-50 bg-white text-black border-b border-gray-200">
+//         <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+//           {/* Logo with dot */}
+//           <Link to="/" className="text-3xl font-serif group relative">
+//             <span className="group-hover:text-[#FF6602] transition-colors">
+//               Prism
+//             </span>
+//             <span className="text-[#FF6602]">.</span>
 //           </Link>
-//           <Button className="bg-customBlack text-customWhite hover:bg-gray-800 transition-all">
-//             Join
-//           </Button>
+
+//           {/* Navigation Links */}
+//           <div className="flex items-center space-x-8 text-base">
+//             <Link to="/about" className="relative group">
+//               About
+//               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#FF6602] scale-x-0 group-hover:scale-x-100 transition-transform">
+//                 <svg
+//                   className="absolute -bottom-[2px] left-0 w-full"
+//                   viewBox="0 0 120 12"
+//                   fill="none"
+//                   preserveAspectRatio="none"
+//                   height="6"
+//                 >
+//                   <path
+//                     d="M3 8.5C20 2.5 70 2.5 117 8.5"
+//                     stroke="#FF6602"
+//                     strokeWidth="3"
+//                     strokeLinecap="round"
+//                   />
+//                 </svg>
+//               </span>
+//             </Link>
+//             <Link
+//               to="/create-portfolio"
+//               className="whitespace-nowrap relative group"
+//             >
+//               Create Portfolio
+//               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#FF6602] scale-x-0 group-hover:scale-x-100 transition-transform">
+//                 <svg
+//                   className="absolute -bottom-[2px] left-0 w-full"
+//                   viewBox="0 0 120 12"
+//                   fill="none"
+//                   preserveAspectRatio="none"
+//                   height="6"
+//                 >
+//                   <path
+//                     d="M3 8.5C20 2.5 70 2.5 117 8.5"
+//                     stroke="#FF6602"
+//                     strokeWidth="3"
+//                     strokeLinecap="round"
+//                   />
+//                 </svg>
+//               </span>
+//             </Link>
+//             <Button className="bg-black px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all">
+//               Login
+//             </Button>
+//           </div>
 //         </div>
 //       </nav>
 
 //       {/* Outlet for Nested Routes */}
-//       <div className="pt-16">
+//       <div className="pt-2">
 //         <Outlet />
 //       </div>
 //     </>
@@ -78,67 +127,76 @@
 
 // export default NavBar;
 
-import { Link, Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Button from "./Button";
 
 const NavBar = () => {
-  const [navBackground, setNavBackground] = useState(
-    "bg-customWhite text-customBlack"
-  );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll("section");
-      let currentBackground = "bg-customWhite text-customBlack"; // Default background
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const isInViewport =
-          rect.top <= window.innerHeight / 2 &&
-          rect.bottom >= window.innerHeight / 2;
-
-        if (isInViewport) {
-          if (section.classList.contains("bg-[#FFFEFD]")) {
-            currentBackground = "bg-black text-white";
-          }
-        }
-      });
-
-      setNavBackground(currentBackground);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const location = useLocation();
 
   return (
     <>
-      <nav
-        className={`w-full py-4 px-6 fixed top-0 left-0 shadow-md z-50 flex justify-between items-center transition-colors duration-300 ${navBackground}`}
-      >
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-cormorant font-bold transition-colors duration-300"
-        >
-          Prism
-        </Link>
-
-        {/* Navigation Links */}
-        <div className="flex gap-6 text-sm font-openSans">
-          <Link to="/about" className="hover:underline">
-            About
+      <nav className="w-full fixed top-0 left-0 z-50 bg-[#FFFDFC] text-black border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+          {/* Logo with dot */}
+          <Link to="/" className="text-3xl font-serif group">
+            <span className="text-3xl font-serif group-hover:text-[#FF6602] transition-colors">
+              Prism
+            </span>
+            <span className="text-[#FF6602]">.</span>
           </Link>
-          <Button className="bg-customBlack text-customWhite hover:bg-gray-800 transition-all">
-            Join
-          </Button>
+
+          {/* Navigation Links */}
+          <div className="flex items-center space-x-8 text-base">
+            <Link to="/about" className="relative group">
+              About
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#FF6602] scale-x-0 group-hover:scale-x-100 transition-transform">
+                <svg
+                  className="absolute -bottom-[2px] left-0 w-full"
+                  viewBox="0 0 120 12"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  height="6"
+                >
+                  <path
+                    d="M3 8.5C20 2.5 70 2.5 117 8.5"
+                    stroke="#FF6602"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+            </Link>
+            <Link
+              to="/create-portfolio"
+              className="whitespace-nowrap relative group"
+            >
+              Create Portfolio
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#FF6602] scale-x-0 group-hover:scale-x-100 transition-transform">
+                <svg
+                  className="absolute -bottom-[2px] left-0 w-full"
+                  viewBox="0 0 120 12"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  height="6"
+                >
+                  <path
+                    d="M3 8.5C20 2.5 70 2.5 117 8.5"
+                    stroke="#FF6602"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+            </Link>
+            <Button className="bg-black px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all">
+              Login
+            </Button>
+          </div>
         </div>
       </nav>
 
       {/* Outlet for Nested Routes */}
-      <div className="pt-16">
+      <div className="pt-2">
         <Outlet />
       </div>
     </>
