@@ -2,6 +2,8 @@ import { useAuth } from "../hooks/use-auth";
 import FormSection from "../components/FormSection";
 import Button from "../components/Button";
 import { useState } from "react";
+import Search from "../components/Search";
+import postPortfolio from "../api/post-portfolio";
 
 function CreatePortfolio() {
   const [formData, setFormData] = useState({
@@ -16,6 +18,8 @@ function CreatePortfolio() {
     topics: [],
     specialisations: [],
   });
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleOnChange(e) {
     const { name, value } = e.target;
@@ -59,9 +63,54 @@ function CreatePortfolio() {
       });
     }
   }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData);
+
+    // Check for empty fields
+    const {
+      firstName,
+      lastName,
+      biography,
+      experienceLevel,
+      photo,
+      linkedin,
+      email,
+      location,
+      topics,
+      specialisations,
+    } = formData;
+    // if (!firstName || !lastName || !email || !username || !password) {
+    //   setErrorMsg("All fields are required. Please fill in every field.");
+    //   return;
+    // }
+
+    // Clear error message before submitting
+    setErrorMsg("");
+
+    try {
+      setIsLoading(true);
+
+      // Call the signup API
+      const response = await postPortfolio(
+        firstName,
+        lastName,
+        biography,
+        experienceLevel,
+        photo,
+        linkedin,
+        email,
+        location,
+        topics,
+        specialisations
+      );
+      console.log("created portfolio successful:", response);
+      //!todo: Then move to the portfolio page
+    } catch (error) {
+      console.error("Signup failed:", error.message);
+      setErrorMsg(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   //!todo logic each input should have values and onchange. form needs on submit.
@@ -252,10 +301,13 @@ function CreatePortfolio() {
               Select Topic
             </option>
             <option value="Scrum Master" className="text-black">
-              Scrum Master
+              DevOps
             </option>
-            <option value="Public Speaker" className="text-black">
-              Public Speaker
+            <option value="Frontend" className="text-black">
+              Frontend
+            </option>
+            <option value="Frontend" className="text-black">
+              AI
             </option>
           </select>
           {formData.topics.map((topic) => (
@@ -288,8 +340,14 @@ function CreatePortfolio() {
             <option value="" disabled>
               Select Specialisation
             </option>
-            <option value="React" className="text-black">
-              React
+            <option value="ReactJs" className="text-black">
+              ReactJs
+            </option>
+            <option value="Html/Css" className="text-black">
+              Html/Css
+            </option>
+            <option value="Java" className="text-black">
+              Java
             </option>
             <option value="Django" className="text-black">
               Django
@@ -320,6 +378,7 @@ function CreatePortfolio() {
           onClick={handleSubmit}
         ></Button>
       </form>
+      <Search />
     </div>
   );
 }
