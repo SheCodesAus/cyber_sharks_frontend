@@ -2,15 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import "./index.css";
-// Tawilwind CSS
+// Tailwind CSS
 
 // import pages and components
 import HomePage from "./pages/HomePage.jsx";
 import NavBar from "./components/NavBar.jsx";
+import Footer from "./components/Footer.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import CreatePortfolio from "./pages/CreatePortfolio.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
-import Footer from "./components/Footer.jsx";
+
 
 const Layout = () => {
   return (
@@ -30,13 +32,13 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/signup", element: <SignupPage /> },
       { path: "/login", element: <LoginPage /> },
+      { path: "/portfolio/new", element: <CreatePortfolio /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* Here we wrap our app in the router provider so the pages render */}
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
