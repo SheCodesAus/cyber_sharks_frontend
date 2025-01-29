@@ -13,22 +13,21 @@ import LoginPage from "./pages/LoginPage.jsx";
 import CreatePortfolio from "./pages/CreatePortfolio.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
 
-// Layout component
+
 const Layout = () => {
   return (
     <div>
       <NavBar />
-      <Outlet /> {/* This renders the child routes */}
+      <Outlet />
       <Footer />
     </div>
   );
 };
-
 // create a router
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />, // Use the Layout component for common NavBar and Footer
+    element: <Layout />,
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/signup", element: <SignupPage /> },
