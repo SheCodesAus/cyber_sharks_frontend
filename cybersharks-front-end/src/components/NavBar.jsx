@@ -93,14 +93,14 @@ const NavBar = () => {
             {!isLoggedIn ? (
               <Button
                 onClick={handleLogin}
-                className="bg-black px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
+                className="bg-black px-8 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
               >
                 Login
               </Button>
             ) : (
               <Button
                 onClick={handleLogout}
-                className="bg-black px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
+                className="bg-black px-8 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
               >
                 Logout
               </Button>

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 // api
 import postLogin from "../api/post-login";
 import { useAuth } from "../hooks/use-auth";
-import Search from "../components/Search";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -90,7 +89,10 @@ function LoginPage() {
           >
             Are you new to Prism?{" "}
           </Link>
-          <Button className="mx-auto mt-2" name="Login"></Button>
+          <Button
+            className="mx-auto mt-2 bg-black px-8 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all h-10"
+            children="Login"
+          ></Button>
         </form>
       </div>
     </div>

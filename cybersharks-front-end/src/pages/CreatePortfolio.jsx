@@ -2,7 +2,6 @@ import { useAuth } from "../hooks/use-auth";
 import FormSection from "../components/FormSection";
 import Button from "../components/Button";
 import { useState } from "react";
-import Search from "../components/Search";
 import postPortfolio from "../api/post-portfolio";
 
 function CreatePortfolio() {
@@ -378,7 +377,6 @@ function CreatePortfolio() {
           onClick={handleSubmit}
         ></Button>
       </form>
-      <Search />
     </div>
   );
 }

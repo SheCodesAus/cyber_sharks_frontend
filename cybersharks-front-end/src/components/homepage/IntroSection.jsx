@@ -17,7 +17,7 @@ const IntroSection = () => {
             technology discussions. Let's make your event unforgettable.
           </p>
           <div>
-            <Button className="bg-white text-black px-8 py-3 rounded-full hover:opacity-90 transition-all text-base min-w-[160px] font-normal">
+            <Button className="bg-white text-black px-8 rounded-full hover:opacity-90 transition-all text-base min-w-[160px] font-normal">
               Find Speakers
             </Button>
           </div>
