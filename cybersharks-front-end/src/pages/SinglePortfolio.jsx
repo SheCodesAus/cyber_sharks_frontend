@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
@@ -9,8 +9,10 @@ import { useEffect } from "react";
 
 function SinglePortfolio() {
   const { id } = useParams();
+  console.log(id);
   const { auth } = useAuth();
   console.log(auth);
+  const navigate = useNavigate();
   //   when auth is null, move to login page or show message.
   const [activeTab, setActiveTab] = useState("Biography");
 
@@ -93,21 +95,41 @@ function SinglePortfolio() {
 
         {/* Contact Links */}
         {/* !todo only for logged in user */}
-        <div className="flex justify-center gap-4 mt-4">
-          <a
-            href={`mailto:${userData.email}`}
-            className="flex items-center gap-2 hover:text-accent1"
+        <div className="relative flex justify-center gap-4 mt-4">
+          <div
+            className={`absolute inset-0 bg-white/40 backdrop-blur-md ${
+              auth.token ? "hidden" : "flex items-center justify-center"
+            }`}
           >
-            <MdOutlineEmail className="w-5 h-5" /> Email
-          </a>
-          <a
-            href={userData.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-accent1"
+            <p
+              className="text-gray-600 cursor-pointer font-bold hover:underline"
+              onClick={() => navigate("/login")}
+            >
+              Please login to see the contact details
+            </p>
+          </div>
+
+          {/* 실제 연락처 정보 */}
+          <div
+            className={`${
+              !auth.token ? "blurred pointer-events-none" : "flex gap-3"
+            }`}
           >
-            <FaLinkedin className="w-5 h-5" /> LinkedIn
-          </a>
+            <a
+              href={`mailto:${userData.email}`}
+              className="flex items-center gap-2 hover:text-accent1"
+            >
+              <MdOutlineEmail className="w-5 h-5" /> Email
+            </a>
+            <a
+              href={userData.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-accent1"
+            >
+              <FaLinkedin className="w-5 h-5" /> LinkedIn
+            </a>
+          </div>
         </div>
 
         {/* Additional Info */}
@@ -122,7 +144,6 @@ function SinglePortfolio() {
           <p>
             <strong>Experience Level:</strong> {userData.experience_level}
           </p>
-          <p>this is recommended by someone.getting userdata</p>
         </div>
       </div>
 
