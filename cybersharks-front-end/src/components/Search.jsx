@@ -173,13 +173,16 @@
 // export default Search;
 
 import React, { useState } from "react";
-import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
-function Search() {
+function Search({ onSearch }) {
   const [location, setLocation] = useState("");
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [selectedSpecialisations, setSelectedSpecialisations] = useState([]);
 
+  const navigate = useNavigate();
+
+  // handle dropdown selections
   const handleLocationChange = (e) => {
     setLocation(e.target.value);
   };
@@ -208,21 +211,47 @@ function Search() {
         selectedSpecialisations.filter((spec) => spec !== value)
       );
     }
+
+    // if all filters are empty, reset the page to show all profiles
+    const updatedLocation = type === "location" ? "" : location;
+    const updatedTopics =
+      type === "topic"
+        ? selectedTopics.filter((topic) => topic !== value)
+        : selectedTopics;
+    const updatedSpecialisations =
+      type === "specialisation"
+        ? selectedSpecialisations.filter((spec) => spec !== value)
+        : selectedSpecialisations;
+
+    if (
+      !updatedLocation &&
+      updatedTopics.length === 0 &&
+      updatedSpecialisations.length === 0
+    ) {
+      navigate("/search"); // Reset URL to default search page
+      onSearch("", [], []); // Reset profiles
+    }
   };
 
+  // handle search - update URL with query parameters
   const handleSearch = () => {
-    console.log("Search clicked", {
-      location,
-      topics: selectedTopics,
-      specialisations: selectedSpecialisations,
-    });
+    const params = new URLSearchParams();
+    if (location) params.append("location", location);
+    selectedTopics.forEach((topic) => params.append("topics", topic));
+    selectedSpecialisations.forEach((spec) =>
+      params.append("specialisations", spec)
+    );
+
+    navigate(`/search?${params.toString()}`);
+
+    onSearch(location, selectedTopics, selectedSpecialisations);
   };
 
   return (
     <div className="flex justify-center items-center w-full px-4 py-16">
-      {/* Search Container */}
       <div className="w-auto bg-[#FFF7ED] rounded-xl shadow-md p-6 flex flex-col space-y-4 max-w-5xl mx-auto">
         <div className="flex justify-center items-center space-x-4 w-full">
+          {/* location */}
           <select
             value={location}
             onChange={handleLocationChange}
@@ -231,17 +260,12 @@ function Search() {
             <option value="" disabled>
               Select Location
             </option>
-            <option value="Brisbane" className="text-black">
-              Brisbane
-            </option>
-            <option value="Melbourne" className="text-black">
-              Melbourne
-            </option>
-            <option value="Sydney" className="text-black">
-              Sydney
-            </option>
+            <option value="Brisbane">Brisbane</option>
+            <option value="Melbourne">Melbourne</option>
+            <option value="Sydney">Sydney</option>
           </select>
 
+          {/* topics ddropdown */}
           <select
             value=""
             onChange={handleTopicChange}
@@ -250,14 +274,13 @@ function Search() {
             <option value="" disabled>
               Select Topic
             </option>
-            <option value="Scrum Master" className="text-black">
-              Scrum Master
-            </option>
-            <option value="Public Speaker" className="text-black">
-              Public Speaker
-            </option>
+            <option value="Scrum Master">Scrum Master</option>
+            <option value="Public Speaker">Public Speaker</option>
+            <option value="AI">AI</option>
+            <option value="Cloud">Cloud</option>
           </select>
 
+          {/* Specialisations propdown */}
           <select
             value=""
             onChange={handleSpecialisationChange}
@@ -266,18 +289,12 @@ function Search() {
             <option value="" disabled>
               Select Specialisation
             </option>
-            <option value="React" className="text-black">
-              React
-            </option>
-            <option value="Django" className="text-black">
-              Django
-            </option>
-            <option value="Python" className="text-black">
-              Python
-            </option>
+            <option value="React">React</option>
+            <option value="Django">Django</option>
+            <option value="Python">Python</option>
           </select>
 
-          {/* Subtle Search Button */}
+          {/* Search button */}
           <button
             onClick={handleSearch}
             className="bg-[#FFF7ED] text-[#FF6602] border border-[#FF6602] px-6 py-2 rounded-lg hover:bg-[#FFEBD9] transition-shadow shadow-md hover:shadow-lg"
@@ -286,6 +303,7 @@ function Search() {
           </button>
         </div>
 
+        {/* Display orange tags */}
         <div className="flex flex-wrap gap-2">
           {location && (
             <span className="bg-[#FF6602] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
