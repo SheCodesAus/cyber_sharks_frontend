@@ -443,10 +443,12 @@ function CreatePortfolio() {
         </FormSection>
 
         <Button
-          className="mt-5 w-[70%] sm:w-[40%]"
+          className="mt-5 h-10 w-[70%] sm:w-[40%] bg-customBlack text-customWhite"
           name="Create your portfolio"
           onClick={handleSubmit}
-        ></Button>
+        >
+          Create a portfilo
+        </Button>
       </form>
     </div>
   );
