@@ -61,111 +61,81 @@ const allSpeakers = [
   },
   {
     id: 9,
-    name: "Ana Costa",
-    role: "Full Stack Developer",
-    location: "Sydney",
-    tags: ["React", "Django", "PostgreSQL"],
+    name: "Cuca Silva",
+    role: "UX Designer",
+    location: "Brisbane",
+    tags: ["Design", "UX", "Figma"],
   },
   {
     id: 10,
-    name: "Abbyana Kuo",
-    role: "Frontend Engineer",
-    location: "Brisbane",
-    tags: ["Vue.js", "Tailwind", "UI/UX"],
+    name: "Ally Gator",
+    role: "CEO",
+    location: "Perth",
+    tags: ["Design", "UX", "Candles"],
   },
   {
     id: 11,
-    name: "Emma Wong",
-    role: "Product Manager",
+    name: "Lucy Moreira",
+    role: "Data Scientist",
     location: "Melbourne",
-    tags: ["Agile", "Scrum", "Leadership"],
+    tags: ["Python", "Machine Learning", "Data Science"],
   },
   {
     id: 12,
-    name: "Nathaly Ford",
-    role: "DevOps Engineer",
-    location: "Sydney",
-    tags: ["AWS", "Kubernetes", "Docker"],
-  },
-  {
-    id: 13,
-    name: "Ravish Patel",
-    role: "Backend Developer",
-    location: "Brisbane",
-    tags: ["Node.js", "Express", "MongoDB"],
-  },
-  {
-    id: 14,
-    name: "Sarah Lee",
-    role: "Security Engineer",
-    location: "Melbourne",
-    tags: ["Cybersecurity", "Ethical Hacking", "Cloud Security"],
-  },
-  {
-    id: 15,
-    name: "Isabella Torres",
-    role: "Tech Writer",
-    location: "Adelaide",
-    tags: ["Technical Writing", "Docs", "Content Strategy"],
-  },
-  {
-    id: 16,
-    name: "Aisha Khan",
-    role: "Software Engineer",
-    location: "Sydney",
-    tags: ["Angular", "TypeScript", "Firebase"],
-  },
-  {
-    id: 17,
-    name: "Danielle Kim",
-    role: "AI Engineer",
-    location: "Brisbane",
-    tags: ["TensorFlow", "AI", "Data Science"],
-  },
-  {
-    id: 18,
-    name: "Leila Adebayo",
-    role: "QA Engineer",
+    name: "Ally Gator",
+    role: "CEO",
     location: "Perth",
-    tags: ["Testing", "Automation", "Cypress"],
-  },
-  {
-    id: 19,
-    name: "Claudia Schiffer",
-    role: "QA Engineer",
-    location: "Perth",
-    tags: ["Testing", "Automation", "Cypress"],
-  },
-  {
-    id: 20,
-    name: "Samantha Fox",
-    role: "QA Engineer",
-    location: "Perth",
-    tags: ["Testing", "Automation", "Cypress"],
+    tags: ["Design", "UX", "Candles"],
   },
 ];
 
+// state to store selected filters
 const SearchPage = () => {
-  const [visibleSpeakers, setVisibleSpeakers] = useState(8); // Start with 12 profiles
+  const [visibleSpeakers, setVisibleSpeakers] = useState(8);
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedTopics, setSelectedTopics] = useState([]);
+  const [selectedSpecialisations, setSelectedSpecialisations] = useState([]);
 
   const handleLoadMore = () => {
-    setVisibleSpeakers((prev) => prev + 8); // Load 6 more profiles each time
+    setVisibleSpeakers((prev) => prev + 8);
   };
+
+  // function to update filters when user selects in the search bar
+  const handleSearch = (location, topics, specialisations) => {
+    setSelectedLocation(location);
+    setSelectedTopics(topics);
+    setSelectedSpecialisations(specialisations);
+  };
+
+  // filtering logic
+  const filteredSpeakers = allSpeakers.filter((speaker) => {
+    const matchesLocation =
+      !selectedLocation || speaker.location === selectedLocation;
+    const matchesTopics =
+      selectedTopics.length === 0 ||
+      selectedTopics.some((topic) => speaker.tags.includes(topic));
+    const matchesSpecialisations =
+      selectedSpecialisations.length === 0 ||
+      selectedSpecialisations.some((spec) => speaker.tags.includes(spec));
+
+    return matchesLocation && matchesTopics && matchesSpecialisations;
+  });
 
   return (
     <div className="min-h-screen bg-[#FFFDFC] text-customBlack">
       <div className="max-w-7xl mx-auto px-6 py-20">
-        <Search />
+        {/* pass `handleSearch` to Search */}
+        <Search onSearch={handleSearch} />
 
-        {/* Speaker Cards */}
+        {/* display Filtered Speaker Cards */}
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 gap-y-12">
-          {allSpeakers.slice(0, visibleSpeakers).map((speaker) => (
+          {filteredSpeakers.slice(0, visibleSpeakers).map((speaker) => (
             <SpeakerCard key={speaker.id} {...speaker} />
           ))}
         </div>
 
-        {/* Load More */}
-        {visibleSpeakers < allSpeakers.length && (
+        {/* load More */}
+        {visibleSpeakers < filteredSpeakers.length && (
           <div className="mt-10 text-center">
             <span
               onClick={handleLoadMore}
