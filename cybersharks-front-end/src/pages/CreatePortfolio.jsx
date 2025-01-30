@@ -16,9 +16,12 @@ function CreatePortfolio() {
     location: "",
     topics: [],
     specialisations: [],
+    specialisations_detail: "",
+    topic_detail: "",
   });
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  console.log(formData);
 
   function handleOnChange(e) {
     const { name, value } = e.target;
@@ -69,6 +72,8 @@ function CreatePortfolio() {
     const {
       firstName,
       lastName,
+      company,
+      occupation,
       biography,
       experienceLevel,
       photo,
@@ -115,14 +120,11 @@ function CreatePortfolio() {
   //!todo logic each input should have values and onchange. form needs on submit.
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-customWhite">
-      <h1 className="w-full text-left  font-bold text-[1.5rem] font-sans px-4 pt-20  max-w-7xl ">
-        Start your portfolio
-      </h1>
-
-      <form className="flex flex-col px-4 py-9 justify-center items-center bg-white shadow-md rounded-lg w-full max-w-7xl">
+      <form className="flex flex-col px-4 py-9 justify-center items-center bg-white shadow-md rounded-lg w-full max-w-7xl pt-24">
         {/* Name */}
         <FormSection
           title={<span className="text-accent1">Name</span>}
+          style="border-b-[1px] border-gray-200"
           description="This is the name that will appear on your public profile. Use your real name or a professional alias that represents you best."
         >
           <div className="flex flex-col gap-2">
@@ -151,10 +153,42 @@ function CreatePortfolio() {
           </div>
         </FormSection>
 
+        <FormSection
+          title={<span className="text-accent1">Professional Background</span>}
+          style="border-b-[1px] border-gray-200 w-full"
+          description="Share your specialisation and the company you are currently working at."
+        >
+          <div className="flex flex-col gap-2">
+            <label className="input input-bordered flex items-center gap-2 bg-white w-full text-[13px]">
+              Company
+              <input
+                type="text"
+                className="grow"
+                name="company"
+                id="company"
+                onChange={handleOnChange}
+                required
+              />
+            </label>
+            <label className="input input-bordered flex items-center gap-2 bg-white text-[13px]">
+              Role
+              <input
+                type="text"
+                className="grow"
+                name="occupation"
+                id="occupation"
+                onChange={handleOnChange}
+                required
+              />
+            </label>
+          </div>
+        </FormSection>
+
         {/* Biography */}
         <FormSection
           title={<span className="text-accent1">Biography</span>}
           description="Introduce yourself with a brief biography. Include your professional background, key achievements, and passions."
+          style="border-b-[1px] border-gray-200"
         >
           <textarea
             type="text"
@@ -169,6 +203,7 @@ function CreatePortfolio() {
         <FormSection
           title={<span className="text-accent1">Photo</span>}
           description="Upload a profile picture using a publicly accessible image. Recommended dimensions: 400x400 pixels."
+          style="border-b-[1px] border-gray-200"
         >
           <input
             type="file"
@@ -180,6 +215,7 @@ function CreatePortfolio() {
         <FormSection
           title={<span className="text-accent1">Contact</span>}
           description="Provide your contact details so visitors can connect with you directly. Include an email address and a LinkedIn profile."
+          style="border-b-[1px] border-gray-200"
         >
           <div className="flex flex-col gap-2">
             <label className="input input-bordered flex items-center gap-2 bg-white w-full text-[12px]">
@@ -211,6 +247,7 @@ function CreatePortfolio() {
         <FormSection
           title={<span className="text-accent1">Location</span>}
           description="Specify your current city and country. This helps people know where you are based."
+          style="border-b-[1px] border-gray-200"
         >
           <select
             value={formData.location}
@@ -248,6 +285,7 @@ function CreatePortfolio() {
         <FormSection
           title={<span className="text-accent1">Experience Level</span>}
           description="Choose your professional experience level to give visitors an idea of your expertise."
+          style="border-b-[1px] border-gray-200"
         >
           <select
             value={formData.experienceLevel}
@@ -288,7 +326,7 @@ function CreatePortfolio() {
         {/* Topic */}
         <FormSection
           title={<span className="text-accent1">Topic</span>}
-          description="Topics represent your interests, focus areas, or the key subjects you are passionate about."
+          description="Topics represent your interests, focus areas, or key subjects that drive your passion."
         >
           <select
             name="topics"
@@ -299,14 +337,20 @@ function CreatePortfolio() {
             <option value="" disabled>
               Select Topic
             </option>
-            <option value="Scrum Master" className="text-black">
+            <option value="DevOps" className="text-black">
               DevOps
             </option>
             <option value="Frontend" className="text-black">
               Frontend
             </option>
-            <option value="Frontend" className="text-black">
-              AI
+            <option value="Agile methodologies" className="text-black">
+              Agile methodologies
+            </option>
+            <option value="Data Visualisation" className="text-black">
+              Data Visualisation
+            </option>
+            <option value="Responsive Design" className="text-black">
+              Responsive Design
             </option>
           </select>
           {formData.topics.map((topic) => (
@@ -323,6 +367,20 @@ function CreatePortfolio() {
               </button>
             </span>
           ))}
+        </FormSection>
+
+        <FormSection
+          title={<span className="text-accent1"></span>}
+          description="Here, you can describe why this topic interests you, share your relevant experiences, or explain how it aligns with your career goals. For example, if you are interested in DevOps, you might mention your experience with CI/CD pipelines, infrastructure as code, or cloud deployment."
+          style="border-b-[1px] border-gray-200"
+        >
+          <textarea
+            type="text"
+            name="topic_detail"
+            id="topic_detail"
+            className="border border-gray-300 w-full min-h-64 rounded-lg"
+            onChange={handleOnChange}
+          />
         </FormSection>
 
         {/* Specialisation */}
@@ -369,6 +427,19 @@ function CreatePortfolio() {
               </button>
             </span>
           ))}
+        </FormSection>
+
+        <FormSection
+          title={<span className="text-accent1"></span>}
+          description="Select your specialisation and describe how you have applied these skills in projects. Share your experience, challenges, or achievements related to this specialisation, and explain how it contributes to your career goals."
+        >
+          <textarea
+            type="text"
+            name="specialisations_detail"
+            id="specialisations_detail"
+            className="border border-gray-300 w-full min-h-64 rounded-lg"
+            onChange={handleOnChange}
+          />
         </FormSection>
 
         <Button
