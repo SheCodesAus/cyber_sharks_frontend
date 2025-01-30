@@ -65,7 +65,10 @@ const FeaturedSpeakers = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-20">
-      <h2 className="text-4xl font-serif font-bold mb-12">Featured Speakers</h2>
+      <h2 className="text-4xl font-serif font-bold mb-12 text-customBlack">
+        Featured Speakers
+      </h2>
+
       <div className="relative overflow-visible">
         <style jsx>{`
           .slick-prev:before,
