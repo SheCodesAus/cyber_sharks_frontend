@@ -28,13 +28,14 @@ const NavBar = () => {
     <>
       <nav className="w-full fixed top-0 left-0 z-50 bg-[#FFFDFC] text-black border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
-          {/* Logo with dot */}
-          <Link to="/" className="text-3xl font-serif group">
-            <span className="text-3xl font-serif group-hover:text-[#FF6602] transition-colors">
-              Prism
-            </span>
-            <span className="text-[#FF6602]">.</span>
-          </Link>
+          <div className="col-span-3">
+            <Link to="/" className="text-3xl font-serif text-customBlack group">
+              <span className="group-hover:text-accent1 transition-colors">
+                Prism
+              </span>
+              <span className="text-accent1">.</span>
+            </Link>
+          </div>
 
           {/* Navigation Links */}
           <div className="flex items-center space-x-8 text-base">
@@ -93,14 +94,14 @@ const NavBar = () => {
             {!isLoggedIn ? (
               <Button
                 onClick={handleLogin}
-                className="bg-black px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
+                className="bg-customBlack px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
               >
                 Login
               </Button>
             ) : (
               <Button
                 onClick={handleLogout}
-                className="bg-black px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
+                className="bg-customBlack px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
               >
                 Logout
               </Button>

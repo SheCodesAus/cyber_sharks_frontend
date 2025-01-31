@@ -6,6 +6,7 @@ import "./index.css";
 
 // import pages and components
 import HomePage from "./pages/HomePage.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/", element: <HomePage /> },
+      { path: "/search", element: <SearchPage /> },
       { path: "/signup", element: <SignupPage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/portfolio/new", element: <CreatePortfolio /> },
