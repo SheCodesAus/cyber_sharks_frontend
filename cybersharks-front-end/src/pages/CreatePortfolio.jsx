@@ -8,6 +8,8 @@ function CreatePortfolio() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    occupation: "",
+    company: "",
     biography: "",
     experienceLevel: "",
     photo: null,
@@ -52,6 +54,13 @@ function CreatePortfolio() {
     }
   }
 
+  function handleImageUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setFormData((prevData) => ({ ...prevData, photo: file }));
+  }
+
   function removeTag(type, value) {
     if (Array.isArray(formData[type])) {
       setFormData({
@@ -82,6 +91,8 @@ function CreatePortfolio() {
       location,
       topics,
       specialisations,
+      specialisations_detail,
+      topic_detail,
     } = formData;
     // if (!firstName || !lastName || !email || !username || !password) {
     //   setErrorMsg("All fields are required. Please fill in every field.");
@@ -99,13 +110,18 @@ function CreatePortfolio() {
         firstName,
         lastName,
         biography,
+        company,
+        occupation,
         experienceLevel,
         photo,
         linkedin,
         email,
         location,
         topics,
-        specialisations
+        specialisations,
+        specialisations_detail,
+        topic_detail,
+
       );
       console.log("created portfolio successful:", response);
       //!todo: Then move to the portfolio page
@@ -117,6 +133,8 @@ function CreatePortfolio() {
     }
   }
 
+  console.log(formData.photo instanceof File);
+  console.log(formData.photo);
   //!todo logic each input should have values and onchange. form needs on submit.
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-customWhite">
@@ -208,6 +226,8 @@ function CreatePortfolio() {
           <input
             type="file"
             className="file-input w-full max-w-xs bg-white border-gray-200"
+            onChange={handleImageUpload}
+            accept="image/*"
           />
         </FormSection>
 

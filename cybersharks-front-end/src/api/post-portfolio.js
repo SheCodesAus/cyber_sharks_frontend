@@ -1,6 +1,8 @@
 async function postPortfolio(
   firstName,
   lastName,
+  occupation,
+  company,
   biography,
   experienceLevel,
   photo,
@@ -8,23 +10,12 @@ async function postPortfolio(
   email,
   location,
   topics,
-  specialisations
+  specialisations,
+  specialisations_detail,
+  topic_detail
 ) {
   const url = `${import.meta.env.VITE_API_URL}/portfolios/`;
   const token = window.localStorage.getItem("token");
-  console.log("Request URL:", url);
-  console.log("Request Body:", {
-    firstName,
-    lastName,
-    biography,
-    experienceLevel,
-    photo,
-    linkedin,
-    email,
-    location,
-    topics,
-    specialisations,
-  });
 
   try {
     const response = await fetch(url, {
@@ -36,6 +27,8 @@ async function postPortfolio(
       body: JSON.stringify({
         first_name: firstName,
         last_name: lastName,
+        occupation,
+        company,
         biography,
         experienceLevel,
         photo,
@@ -44,6 +37,8 @@ async function postPortfolio(
         location,
         topics,
         specialisations,
+        specialisations_detail,
+        topic_detail,
       }),
     });
 

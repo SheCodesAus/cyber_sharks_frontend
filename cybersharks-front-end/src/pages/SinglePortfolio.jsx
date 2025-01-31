@@ -9,9 +9,7 @@ import { useEffect } from "react";
 
 function SinglePortfolio() {
   const { id } = useParams();
-  console.log(id);
   const { auth } = useAuth();
-  console.log(auth);
   const navigate = useNavigate();
   //   when auth is null, move to login page or show message.
   const [activeTab, setActiveTab] = useState("Biography");
