@@ -135,7 +135,7 @@ function CreatePortfolio() {
 
   console.log(formData.photo instanceof File);
   console.log(formData.photo);
-  //!todo logic each input should have values and onchange. form needs on submit.
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-customWhite">
       <form className="flex flex-col px-4 py-9 justify-center items-center bg-white shadow-md rounded-lg w-full max-w-7xl pt-24">
