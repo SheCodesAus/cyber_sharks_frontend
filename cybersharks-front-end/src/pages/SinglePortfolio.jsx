@@ -61,10 +61,10 @@ function SinglePortfolio() {
         return <p className="text-gray-700">{userData.biography}</p>;
       case "Specialisations":
         return (
-          <p className="text-gray-700">{userData.specialisations.join(", ")}</p>
+          <p className="text-gray-700">{userData.specialisations_detail}</p>
         );
       case "Topics":
-        return <p className="text-gray-700">{userData.topics.join(", ")}</p>;
+        return <p className="text-gray-700">{userData.topic_detail}</p>;
       default:
         return <p className="text-gray-500">Select a tab to see content.</p>;
     }
