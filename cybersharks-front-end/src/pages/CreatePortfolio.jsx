@@ -1,8 +1,8 @@
-import { useAuth } from "../hooks/use-auth";
 import FormSection from "../components/FormSection";
 import Button from "../components/Button";
 import { useState } from "react";
 import postPortfolio from "../api/post-portfolio";
+import { useNavigate } from "react-router-dom";
 
 function CreatePortfolio() {
   const [formData, setFormData] = useState({
@@ -21,9 +21,9 @@ function CreatePortfolio() {
     specialisations_detail: "",
     topic_detail: "",
   });
-  const [errorMsg, setErrorMsg] = useState("");
+  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  console.log(formData);
+  const navigate = useNavigate();
 
   function handleOnChange(e) {
     const { name, value } = e.target;
@@ -100,7 +100,7 @@ function CreatePortfolio() {
     // }
 
     // Clear error message before submitting
-    setErrorMsg("");
+    setMessage("");
 
     try {
       setIsLoading(true);
@@ -120,21 +120,22 @@ function CreatePortfolio() {
         topics,
         specialisations,
         specialisations_detail,
-        topic_detail,
-
+        topic_detail
       );
       console.log("created portfolio successful:", response);
-      //!todo: Then move to the portfolio page
+      setMessage(
+        "Yay! Congrats, your portfolio has been successfully created! 🎉"
+      );
+      setTimeout(() => {
+        navigate("/search");
+      }, 2000);
     } catch (error) {
       console.error("Signup failed:", error.message);
-      setErrorMsg(error.message);
+      setMessage(error.message);
     } finally {
       setIsLoading(false);
     }
   }
-
-  console.log(formData.photo instanceof File);
-  console.log(formData.photo);
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-customWhite">
@@ -461,7 +462,7 @@ function CreatePortfolio() {
             onChange={handleOnChange}
           />
         </FormSection>
-
+        <p className="text-sm text-accent1">{message}</p>
         <Button
           className="mt-5 h-10 w-[70%] sm:w-[40%] bg-customBlack text-customWhite"
           name="Create your portfolio"

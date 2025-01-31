@@ -1,19 +1,25 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "../hooks/use-auth";
 
 const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulate login state
+  const { auth } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, [auth]);
 
   const handleLogout = () => {
+    window.localStorage.removeItem("token");
     setIsLoggedIn(false);
     navigate("/"); // Redirect to the homepage on logout
   };
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
     navigate("/login"); // Redirect to the login page on login
   };
 
@@ -67,7 +73,7 @@ const NavBar = () => {
 
             {/* Create Portfolio */}
             <Link
-              to="/create-portfolio"
+            to={!isLoggedIn ? "/login" : "/portfolio/new"}  
               className="whitespace-nowrap relative group"
             >
               Create Portfolio
@@ -108,11 +114,6 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-
-      {/* Outlet for Nested Routes */}
-      {/* <div className="pt-2">
-        <Outlet />
-      </div> */}
     </>
   );
 };
