@@ -16,6 +16,7 @@ module.exports = {
         customBlack: "#1a1a1a",
         // which orange???
         accent1: "#FF6606",
+        accentbg: "rgba(255, 102, 6, 0.2)",
       },
     },
   },

@@ -65,15 +65,9 @@ function SignupPage() {
     }));
   }
 
-  console.log(errorMsg);
-
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-customWhite">
       <div className="bg-white shadow-md rounded-lg p-8 sm:w-[40%]">
-        <p className="font-cormorant text-customBlack text-[1.5rem] text-center  h-auto">
-          Intro:Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut
-          ducimus, impedit officia commodi quis neque sunt et doloribus
-        </p>
         <form
           onSubmit={onSubmit}
           className="flex flex-col gap-4 justify-center mx-auto"
@@ -140,8 +134,8 @@ function SignupPage() {
           </label>
           <p className="text-center">{errorMsg}</p>
           <Button
-            className="mx-auto mt-2"
-            name={isLoading ? "Loading..." : "Sign up"}
+            className="mx-auto mt-2 bg-black px-8 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all h-10"
+            children={isLoading ? "Loading..." : "Sign up"}
           ></Button>
         </form>
       </div>

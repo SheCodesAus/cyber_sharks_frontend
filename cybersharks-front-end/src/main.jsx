@@ -13,7 +13,7 @@ import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import CreatePortfolio from "./pages/CreatePortfolio.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
-
+import SinglePortfolio from "./pages/SinglePortfolio.jsx";
 
 const Layout = () => {
   return (
@@ -35,6 +35,8 @@ const router = createBrowserRouter([
       { path: "/signup", element: <SignupPage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/portfolio/new", element: <CreatePortfolio /> },
+      //!todo need to change /portfolio/:id
+      { path: "/portfolio/example", element: <SinglePortfolio /> },
     ],
   },
 ]);
