@@ -70,7 +70,7 @@ const FeaturedSpeakers = () => {
       </h2>
 
       <div className="relative overflow-visible">
-        <style jsx>{`
+        <style>{`
           .slick-prev:before,
           .slick-next:before {
             color: black;
