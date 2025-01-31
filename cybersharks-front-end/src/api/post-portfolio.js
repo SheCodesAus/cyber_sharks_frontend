@@ -81,7 +81,8 @@ async function postPortfolio(
   const url = `${import.meta.env.VITE_API_URL}/portfolios/`;
   const token = window.localStorage.getItem("token");
 
-  // ✅ FormData 객체 생성
+ 
+  
   const formData = new FormData();
 
   formData.append("first_name", firstName);
