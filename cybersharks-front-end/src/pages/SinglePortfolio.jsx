@@ -80,15 +80,15 @@ function SinglePortfolio() {
         {/* Contact Links */}
         <div className="relative flex justify-center gap-4 mt-4">
           <div
-            className={`absolute inset-0 bg-white/40 backdrop-blur-md ${
+            className={`absolute inset-0 bg-white/40 backdrop-blur-sm ${
               auth.token ? "hidden" : "flex items-center justify-center"
             }`}
           >
             <p
-              className="text-gray-600 cursor-pointer font-bold hover:underline"
+              className="text-customBlack cursor-pointer font-bold text-[1.1rem]"
               onClick={() => navigate("/login")}
             >
-              Please login to see the contact details
+              Please login to see the contact details.
             </p>
           </div>
           <div
