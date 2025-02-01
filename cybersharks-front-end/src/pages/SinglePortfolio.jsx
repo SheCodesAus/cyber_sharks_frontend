@@ -1,47 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth";
 import { MdOutlineEmail } from "react-icons/md";
-import { FaLinkedin } from "react-icons/fa";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import getPortfolioById from "../api/get-portfolioById";
-import { useEffect } from "react";
+import { FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
+import getPortfolioById from "../api/get-portfolio-by-id"; // Import API function
 
 function SinglePortfolio() {
-  const { id } = useParams();
+  const { id } = useParams(); // Get portfolio ID from URL
+
+  console.log("Portfolio ID from URL:", id);
   const { auth } = useAuth();
   const navigate = useNavigate();
-  //   when auth is null, move to login page or show message.
+  const [portfolio, setPortfolio] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("Biography");
 
-  // Dummy user data
-  const userData = {
-    first_name: "Jane",
-    last_name: "Doe",
-    experience_level: "Mid",
-    occupation: "Software Engineer",
-    company: "She Codes",
-    topic_detail: "",
-    specialisations_detail: "",
-    location: "Brisbane",
-    linkedin: "https://linkedin.com/in/janedoe",
-    email: "janedoe@example.com",
-    biography:
-      "Jane is a passionate developer with a love for clean code and innovation. She has over 10 years of experience building web applications and mentoring aspiring developers.",
-    topics: ["Frontend Development", "UI/UX Design"],
-    specialisations: ["Python", "React.js", "React.js", ,],
-    photo:
-      "https://images.pexels.com/photos/1820919/pexels-photo-1820919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  };
-
-  const [portfolio, setPortfolio] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
-
   useEffect(() => {
-    const fetchData = async () => {
+    if (!id) return;
+    const fetchPortfolio = async () => {
       try {
-        const data = await getPortfolioById(1);
+        const data = await getPortfolioById(id);
         setPortfolio(data);
       } catch (e) {
         setError(e);
@@ -49,22 +28,30 @@ function SinglePortfolio() {
         setIsLoading(false);
       }
     };
-    fetchData();
-  }, []);
 
-  console.log(portfolio);
+    fetchPortfolio();
+  }, [id]);
+
+  if (isLoading)
+    return <div className="text-center py-20">Loading portfolio...</div>;
+  if (error || !portfolio)
+    return (
+      <div className="text-center py-20 text-red-500">Portfolio not found</div>
+    );
 
   // Tab content switcher
   const renderContent = () => {
     switch (activeTab) {
       case "Biography":
-        return <p className="text-gray-700">{userData.biography}</p>;
+        return <p className="text-gray-700">{portfolio.biography}</p>;
       case "Specialisations":
         return (
-          <p className="text-gray-700">{userData.specialisations_detail}</p>
+          <p className="text-gray-700">
+            {portfolio.specialisations.join(", ")}
+          </p>
         );
       case "Topics":
-        return <p className="text-gray-700">{userData.topic_detail}</p>;
+        return <p className="text-gray-700">{portfolio.topics.join(", ")}</p>;
       default:
         return <p className="text-gray-500">Select a tab to see content.</p>;
     }
@@ -76,23 +63,21 @@ function SinglePortfolio() {
       <div className="bg-white shadow-lg rounded-lg max-w-3xl mx-auto text-center pt-20 py-3">
         <img
           className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-accent1"
-          src={userData.photo}
-          alt={`${userData.first_name} ${userData.last_name}`}
+          src={portfolio.photo || "https://via.placeholder.com/150"}
+          alt={`${portfolio.first_name} ${portfolio.last_name}`}
         />
         <h2 className="text-2xl font-semibold mt-4">
-          {userData.first_name} {userData.last_name}
+          {portfolio.first_name} {portfolio.last_name}
         </h2>
-
         <div className="flex justify-center items-center">
           <FaMapMarkerAlt />
-          <p className="text-gray-500">{userData.location}</p>
+          <p className="text-gray-500">{portfolio.location}</p>
         </div>
         <p className="text-gray-500">
-          {userData.occupation} at {userData.company}
+          {portfolio.occupation} at {portfolio.company || "N/A"}
         </p>
 
         {/* Contact Links */}
-        {/* !todo only for logged in user */}
         <div className="relative flex justify-center gap-4 mt-4">
           <div
             className={`absolute inset-0 bg-white/40 backdrop-blur-md ${
@@ -106,21 +91,19 @@ function SinglePortfolio() {
               Please login to see the contact details
             </p>
           </div>
-
-          {/* 실제 연락처 정보 */}
           <div
             className={`${
               !auth.token ? "blurred pointer-events-none" : "flex gap-3"
             }`}
           >
             <a
-              href={`mailto:${userData.email}`}
+              href={`mailto:${portfolio.email}`}
               className="flex items-center gap-2 hover:text-accent1"
             >
               <MdOutlineEmail className="w-5 h-5" /> Email
             </a>
             <a
-              href={userData.linkedin}
+              href={portfolio.linkedin_url}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-accent1"
@@ -134,13 +117,13 @@ function SinglePortfolio() {
         <div className="mt-3 w-[80%] mx-auto space-y-1 bg-accentbg py-2 rounded-xl">
           <p>
             <strong>Specialisation:</strong>{" "}
-            {userData.specialisations.join(", ")}
+            {portfolio.specialisations.join(", ")}
           </p>
           <p>
-            <strong>Topics:</strong> {userData.topics.join(", ")}
+            <strong>Topics:</strong> {portfolio.topics.join(", ")}
           </p>
           <p>
-            <strong>Experience Level:</strong> {userData.experience_level}
+            <strong>Experience Level:</strong> {portfolio.experience_level}
           </p>
         </div>
       </div>
