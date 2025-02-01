@@ -74,7 +74,7 @@ const NavBar = () => {
 
             {/* Create Portfolio */}
             <Link
-            to={!isLoggedIn ? "/login" : "/portfolio/new"}  
+              to={!isLoggedIn ? "/login" : "/portfolio/new"}
               className="whitespace-nowrap relative group"
             >
               Create Portfolio
@@ -100,14 +100,16 @@ const NavBar = () => {
             {!isLoggedIn ? (
               <Button
                 onClick={handleLogin}
-                className="bg-customBlack px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
+                // className="bg-customBlack px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
+                className="bg-customBlack px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all flex items-center justify-center"
               >
                 Login
               </Button>
             ) : (
               <Button
                 onClick={handleLogout}
-                className="bg-customBlack px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
+                // className="bg-customBlack px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all"
+                className="bg-customBlack px-8 py-3 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all flex items-center justify-center"
               >
                 Logout
               </Button>
