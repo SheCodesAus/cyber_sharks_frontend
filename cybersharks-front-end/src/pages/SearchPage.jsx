@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../components/Search";
 import SpeakerCard from "../components/SpeakerCard";
+import searchPortfolioByKeywords from "../api/get-search";
 
 const allSpeakers = [
   {
@@ -121,6 +122,18 @@ const SearchPage = () => {
     return matchesLocation && matchesTopics && matchesSpecialisations;
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await searchPortfolioByKeywords("Brisbane", ["python"], ["frontend"]);
+        console.log(result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="min-h-screen bg-[#FFFDFC] text-customBlack">
       <div className="max-w-7xl mx-auto px-6 py-20">
