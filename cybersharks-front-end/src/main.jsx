@@ -36,7 +36,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/portfolio/new", element: <CreatePortfolio /> },
       //!todo need to change /portfolio/:id
-      { path: "/portfolio/example", element: <SinglePortfolio /> },
+      // { path: "/portfolio/example", element: <SinglePortfolio /> },
+      { path: "/portfolio/:id", element: <SinglePortfolio /> },
     ],
   },
 ]);
