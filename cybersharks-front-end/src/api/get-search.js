@@ -1,42 +1,32 @@
 async function searchPortfolioByKeywords(
-  location="",
+  location = "",
   specialisation = [],
   topic = []
 ) {
   const baseUrl = `${import.meta.env.VITE_API_URL}/search/`;
   const params = new URLSearchParams();
 
-  if (location) {
-    params.append("location", location);
-  }
-
-  if (specialisation.length > 0) {
+  if (location) params.append("location", location);
+  if (specialisation.length > 0)
     params.append("specialisation", specialisation.join(","));
-  }
+  if (topic.length > 0) params.append("topic", topic.join(","));
 
-  if (topic.length > 0) {
-    params.append("topic", topic.join(","));
-  }
+  const searchUrl = `${baseUrl}?${params.toString()}`;
+  console.log("URL:", searchUrl);
 
-  const url = `${baseUrl}?${params.toString()}`;
   try {
-    const response = await fetch(url, { method: "GET" });
+    const response = await fetch(searchUrl, { method: "GET" });
+    const data = await response.json();
 
     if (!response.ok) {
-      const fallbackError = "Error fetching projects";
-      const data = await response.json().catch(() => {
-        throw new Error(fallbackError);
-      });
-      const errorMsg = data?.detail ?? fallbackError;
-      throw new Error(errorMsg);
+      throw new Error(data?.detail ?? "Error fetching projects");
     }
 
-    const searchResult = await response.json();
-    console.log(searchResult);
-    return searchResult;
+    console.log("search result:", data);
+    return data;
   } catch (error) {
-    console.error("Failed to fetch result", error.message);
-    throw error;
+    console.error("fail to search:", error.message);
+    return { error: error.message };
   }
 }
 

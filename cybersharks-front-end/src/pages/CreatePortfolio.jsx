@@ -94,6 +94,7 @@ function CreatePortfolio() {
       specialisations_detail,
       topic_detail,
     } = formData;
+    //!todo form validation
     // if (!firstName || !lastName || !email || !username || !password) {
     //   setErrorMsg("All fields are required. Please fill in every field.");
     //   return;
