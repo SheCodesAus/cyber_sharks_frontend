@@ -7,31 +7,31 @@
 // const speakers = [
 //   {
 //     id: 1,
-//     name: "Tech Leader 1",
+//     name: "Rebecca Smith",
 //     role: "Senior Developer",
 //     location: "Brisbane",
-//     tags: ["React", "Cloud"],
+//     tags: ["React", "Cloud", "Leadership"],
 //   },
 //   {
 //     id: 2,
-//     name: "Tech Leader 2",
+//     name: "Hanayra Olu",
 //     role: "Software Engineer",
 //     location: "Sydney",
-//     tags: ["Python", "AI"],
+//     tags: ["Python", "AI", "Scrum"],
 //   },
 //   {
 //     id: 3,
-//     name: "Tech Leader 3",
+//     name: "Julia Lavoie",
 //     role: "Tech Lead",
 //     location: "Melbourne",
-//     tags: ["JavaScript", "Node.js"],
+//     tags: ["JavaScript", "Node.js", "Public Speaking"],
 //   },
 //   {
 //     id: 4,
-//     name: "Tech Leader 4",
+//     name: "Salma Khan",
 //     role: "Engineer",
 //     location: "Adelaide",
-//     tags: ["CSS", "Web"],
+//     tags: ["CSS", "Web", "Mentorship"],
 //   },
 // ];
 
@@ -39,17 +39,18 @@
 //   const settings = {
 //     dots: true,
 //     infinite: true,
-//     slidesToShow: 3,
+//     slidesToShow: 4,
 //     slidesToScroll: 1,
 //     autoplay: true,
-//     speed: 3000,
-//     autoplaySpeed: 3000,
+//     speed: 6000,
+//     autoplaySpeed: 6000,
 //     cssEase: "linear",
+//     pauseOnHover: true,
 //     responsive: [
 //       {
 //         breakpoint: 1024,
 //         settings: {
-//           slidesToShow: 2,
+//           slidesToShow: 3,
 //         },
 //       },
 //       {
@@ -63,24 +64,26 @@
 //   };
 
 //   return (
-//     <div className="max-w-6xl mx-auto px-6 py-16">
-//       <h2 className="text-2xl font-bold text-customBlack mb-8">
+//     <div className="max-w-7xl mx-auto px-6 py-20">
+//       <h2 className="text-4xl font-serif font-bold mb-12 text-customBlack">
 //         Featured Speakers
 //       </h2>
-//       <div className="relative">
-//         <style jsx>{`
+
+//       <div className="relative overflow-visible">
+//         <style>{`
 //           .slick-prev:before,
 //           .slick-next:before {
 //             color: black;
 //           }
 //           .slick-dots {
-//             bottom: -40px;
+//             bottom: -20px;
 //           }
 //         `}</style>
 //         <Slider {...settings}>
 //           {speakers.map((speaker, index) => (
-//             <div key={index} className="px-2 pb-4">
-//               <div className="card bg-base-100 shadow-xl mx-2">
+//             // <div key={index} className="px-2">
+//             <div key={index} className="px-4 pb-8">
+//               <div className="card bg-base-100 shadow-xl mx-2 h-full">
 //                 <SpeakerCard {...speaker} />
 //               </div>
 //             </div>
@@ -93,96 +96,96 @@
 
 // export default FeaturedSpeakers;
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import SpeakerCard from "../../components/SpeakerCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const speakers = [
-  {
-    id: 1,
-    name: "Tech Leader 1",
-    role: "Senior Developer",
-    location: "Brisbane",
-    tags: ["React", "Cloud"],
-  },
-  {
-    id: 2,
-    name: "Tech Leader 2",
-    role: "Software Engineer",
-    location: "Sydney",
-    tags: ["Python", "AI"],
-  },
-  {
-    id: 3,
-    name: "Tech Leader 3",
-    role: "Tech Lead",
-    location: "Melbourne",
-    tags: ["JavaScript", "Node.js"],
-  },
-  {
-    id: 4,
-    name: "Tech Leader 4",
-    role: "Engineer",
-    location: "Adelaide",
-    tags: ["CSS", "Web"],
-  },
-];
-
 const FeaturedSpeakers = () => {
+  const [speakers, setSpeakers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch speakers from the backend
+  useEffect(() => {
+    const fetchSpeakers = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/portfolios/`
+        );
+        if (!response.ok) throw new Error("Failed to fetch speakers");
+
+        const data = await response.json();
+        setSpeakers(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSpeakers();
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 6000,
     autoplaySpeed: 6000,
     cssEase: "linear",
+    pauseOnHover: true,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 640, settings: { slidesToShow: 1 } },
     ],
     className: "gap-4 pb-12",
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16">
-      <h2 className="text-2xl font-bold text-customBlack mb-8">
+    <div className="max-w-7xl mx-auto px-6 py-20">
+      <h2 className="text-4xl font-serif font-bold mb-12 text-customBlack">
         Featured Speakers
       </h2>
-      <div className="relative">
-        <style jsx>{`
-          .slick-prev:before,
-          .slick-next:before {
-            color: black;
-          }
-          .slick-dots {
-            bottom: -40px;
-          }
-        `}</style>
-        <Slider {...settings}>
-          {speakers.map((speaker, index) => (
-            <div key={index} className="px-2">
-              {/* Card Wrapper */}
-              <div className="w-72 mx-auto">
-                <SpeakerCard {...speaker} />
+
+      {loading && <p className="text-center">Loading speakers...</p>}
+      {error && <p className="text-red-500 text-center">{error}</p>}
+
+      {!loading && !error && speakers.length === 0 && (
+        <p className="text-center text-gray-500">No speakers available.</p>
+      )}
+
+      {!loading && !error && speakers.length > 0 && (
+        <div className="relative overflow-visible">
+          <style>{`
+            .slick-prev:before,
+            .slick-next:before {
+              color: black;
+            }
+            .slick-dots {
+              bottom: -20px;
+            }
+          `}</style>
+          <Slider {...settings}>
+            {speakers.slice(0, 8).map((speaker) => (
+              <div key={speaker.id} className="px-4 pb-8">
+                <div className="card bg-base-100 shadow-xl mx-2 h-full">
+                  <SpeakerCard
+                    id={speaker.id}
+                    name={`${speaker.first_name} ${speaker.last_name}`}
+                    role={speaker.occupation || "Unknown Role"}
+                    location={speaker.location || "Unknown Location"}
+                    tags={speaker.specialisations || []}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
+            ))}
+          </Slider>
+        </div>
+      )}
     </div>
   );
 };
