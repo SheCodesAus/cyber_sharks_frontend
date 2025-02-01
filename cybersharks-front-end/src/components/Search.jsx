@@ -27,6 +27,10 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
     }
   };
 
+  const formattingKeyword = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  };
+
   const removeTag = (type, value) => {
     if (type === "location") {
       setLocation("");
@@ -36,25 +40,6 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
       setSelectedSpecialisations(
         selectedSpecialisations.filter((spec) => spec !== value)
       );
-    }
-
-    // if all filters are empty, reset the page to show all profiles
-    const updatedLocation = type === "location" ? "" : location;
-    const updatedTopics =
-      type === "topic"
-        ? selectedTopics.filter((topic) => topic !== value)
-        : selectedTopics;
-    const updatedSpecialisations =
-      type === "specialisation"
-        ? selectedSpecialisations.filter((spec) => spec !== value)
-        : selectedSpecialisations;
-
-    if (
-      !updatedLocation &&
-      updatedTopics.length === 0 &&
-      updatedSpecialisations.length === 0
-    ) {
-      navigate("/search"); // Reset URL to default search page
     }
   };
 
@@ -97,9 +82,27 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
             <option value="" disabled>
               Select Location
             </option>
-            <option value="Brisbane">Brisbane</option>
-            <option value="Melbourne">Melbourne</option>
-            <option value="Sydney">Sydney</option>
+            <option value="Brisbane" className="text-black">
+              Brisbane
+            </option>
+            <option value="Melbourne" className="text-black">
+              Melbourne
+            </option>
+            <option value="Sydney" className="text-black">
+              Sydney
+            </option>
+            <option value="Perth" className="text-black">
+              Perth
+            </option>
+            <option value="Adelaide" className="text-black">
+              Adelaide
+            </option>
+            <option value="Darwin" className="text-black">
+              Darwin
+            </option>
+            <option value="Canberra" className="text-black">
+              Canberra
+            </option>
           </select>
 
           {/* topics ddropdown */}
@@ -111,20 +114,23 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
             <option value="" disabled>
               Select Topic
             </option>
-            <option value="DevOps" className="text-black">
-              DevOps
+            <option value="devops" className="text-black">
+              Dev Ops
             </option>
             <option value="frontend" className="text-black">
               Frontend
             </option>
-            <option value="Agile methodologies" className="text-black">
+            <option value="agile methodologies" className="text-black">
               Agile methodologies
             </option>
-            <option value="Data Visualisation" className="text-black">
+            <option value="data visualisation" className="text-black">
               Data Visualisation
             </option>
-            <option value="Responsive Design" className="text-black">
+            <option value="responsive design" className="text-black">
               Responsive Design
+            </option>
+            <option value="API Design" className="text-black">
+              API Design
             </option>
           </select>
 
@@ -137,19 +143,19 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
             <option value="" disabled>
               Select Specialisation
             </option>
-            <option value="ReactJs" className="text-black">
+            <option value="reactjs" className="text-black">
               ReactJs
             </option>
-            <option value="Html/Css" className="text-black">
+            <option value="html/css" className="text-black">
               Html/Css
             </option>
-            <option value="Java" className="text-black">
+            <option value="java" className="text-black">
               Java
             </option>
-            <option value="Django" className="text-black">
+            <option value="django" className="text-black">
               Django
             </option>
-            <option value="Python" className="text-black">
+            <option value="python" className="text-black">
               Python
             </option>
           </select>
@@ -167,7 +173,7 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
         <div className="flex flex-wrap gap-2">
           {location && (
             <span className="bg-[#FF6602] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
-              {location}
+              {formattingKeyword(location)}
               <button
                 onClick={() => removeTag("location", location)}
                 className="hover:text-gray-200"
@@ -181,7 +187,7 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
               key={topic}
               className="bg-[#FF6602] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2"
             >
-              {topic}
+              {formattingKeyword(topic)}
               <button
                 onClick={() => removeTag("topic", topic)}
                 className="hover:text-gray-200"
@@ -195,7 +201,7 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
               key={spec}
               className="bg-[#FF6602] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2"
             >
-              {spec}
+              {formattingKeyword(spec)}
               <button
                 onClick={() => removeTag("specialisation", spec)}
                 className="hover:text-gray-200"

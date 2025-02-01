@@ -54,6 +54,10 @@ function CreatePortfolio() {
     }
   }
 
+  const formattingKeyword = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  };
+
   function handleImageUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -289,16 +293,23 @@ function CreatePortfolio() {
             <option value="Sydney" className="text-black">
               Sydney
             </option>
+            <option value="Perth" className="text-black">
+              Perth
+            </option>
+            <option value="Adelaide" className="text-black">
+              Adelaide
+            </option>
+            <option value="Darwin" className="text-black">
+              Darwin
+            </option>
+            <option value="Canberra" className="text-black">
+              Canberra
+            </option>
           </select>
           {formData.location && (
-            <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm flex justify-between items-center gap-2 sm:w-40">
-              {formData.location}
-              <button
-                onClick={() => removeTag("location", location)}
-                className="hover:text-purple-600"
-              >
-                ×
-              </button>
+            <span className="bg-accentbg text-customBlack w-28 px-3 py-1 rounded-full text-sm flex justify-between items-center gap-2 sm:w-40">
+              {formattingKeyword(formData.location)}
+              <button onClick={() => removeTag("location", location)}>×</button>
             </span>
           )}
         </FormSection>
@@ -333,11 +344,10 @@ function CreatePortfolio() {
           </select>
 
           {formData.experienceLevel && (
-            <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm flex justify-between items-center gap-2 sm:w-40">
-              {formData.experienceLevel}
+            <span className="bg-accentbg text-customBlack w-28 px-3 py-1 rounded-full text-sm flex justify-between items-center gap-2 sm:w-40">
+              {formattingKeyword(formData.experienceLevel)}
               <button
                 onClick={() => removeTag("experienceLevel", experienceLevel)}
-                className="hover:text-purple-600"
               >
                 ×
               </button>
@@ -359,34 +369,32 @@ function CreatePortfolio() {
             <option value="" disabled>
               Select Topic
             </option>
-            <option value="DevOps" className="text-black">
-              DevOps
+            <option value="devops" className="text-black">
+              Dev Ops
             </option>
-            <option value="Frontend" className="text-black">
+            <option value="frontend" className="text-black">
               Frontend
             </option>
-            <option value="Agile methodologies" className="text-black">
+            <option value="agile methodologies" className="text-black">
               Agile methodologies
             </option>
-            <option value="Data Visualisation" className="text-black">
+            <option value="data visualisation" className="text-black">
               Data Visualisation
             </option>
-            <option value="Responsive Design" className="text-black">
+            <option value="responsive design" className="text-black">
               Responsive Design
+            </option>
+            <option value="API Design" className="text-black">
+              API Design
             </option>
           </select>
           {formData.topics.map((topic) => (
             <span
               key={topic}
-              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm flex items-center gap-2  w-36 sm:w-40"
+              className="bg-accentbg text-customBlack w-[80%] px-3 py-1 rounded-full text-sm flex justify-between items-center gap-2  mb-3 sm:w-[40%]"
             >
-              {topic}
-              <button
-                onClick={() => removeTag("topics", topic)}
-                className="hover:text-blue-600"
-              >
-                ×
-              </button>
+              {formattingKeyword(topic)}
+              <button onClick={() => removeTag("topics", topic)}>×</button>
             </span>
           ))}
         </FormSection>
@@ -419,31 +427,30 @@ function CreatePortfolio() {
             <option value="" disabled>
               Select Specialisation
             </option>
-            <option value="ReactJs" className="text-black">
+            <option value="reactjs" className="text-black">
               ReactJs
             </option>
-            <option value="Html/Css" className="text-black">
+            <option value="html/css" className="text-black">
               Html/Css
             </option>
-            <option value="Java" className="text-black">
+            <option value="java" className="text-black">
               Java
             </option>
-            <option value="Django" className="text-black">
+            <option value="django" className="text-black">
               Django
             </option>
-            <option value="Python" className="text-black">
+            <option value="python" className="text-black">
               Python
             </option>
           </select>
           {formData.specialisations.map((specialisation) => (
             <span
               key={specialisation}
-              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm flex items-center justify-between gap-2  w-36 sm:w-40"
+              className="bg-accentbg text-customBlack w-[80%] px-3 py-1 rounded-full text-sm flex justify-between items-center gap-2 mb-2 sm:w-[40%]"
             >
-              {specialisation}
+              {formattingKeyword(specialisation)}
               <button
                 onClick={() => removeTag("specialisations", specialisation)}
-                className="hover:text-blue-600"
               >
                 ×
               </button>
