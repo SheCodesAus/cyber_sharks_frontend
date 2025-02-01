@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { fetchPortfolios } from "../api/get-project"; // Import API function
+import { fetchPortfolios } from "../api/get-project";
 import Search from "../components/Search";
 import SpeakerCard from "../components/SpeakerCard";
-import { useSearchParams } from "react-router-dom"; // For reading URL params
+import { useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
-  const [portfolios, setPortfolios] = useState([]); // Stores fetched data
+  const [portfolios, setPortfolios] = useState([]);
   const [visibleSpeakers, setVisibleSpeakers] = useState(8);
   const [searchParams] = useSearchParams();
 
@@ -23,7 +23,7 @@ const SearchPage = () => {
     loadData();
   }, []);
 
-  console.log("Fetched Portfolios:", portfolios); // Debugging purpose
+  // console.log("Fetched Portfolios:", portfolios);
 
   // Extract filters from the URL query parameters
   const selectedLocation = searchParams.get("location") || "";
@@ -41,10 +41,8 @@ const SearchPage = () => {
   return (
     <div className="min-h-screen bg-[#FFFDFC] text-customBlack">
       <div className="max-w-7xl mx-auto px-6 py-20">
-        {/* Search Component */}
         <Search />
 
-        {/* Display Portfolio Data as Speaker Cards */}
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 gap-y-12">
           {portfolios.slice(0, visibleSpeakers).map((portfolio) => (
             <SpeakerCard
@@ -54,12 +52,11 @@ const SearchPage = () => {
               role={portfolio.occupation || "N/A"}
               location={portfolio.location}
               tags={portfolio.specialisations || []}
-              image={portfolio.photo || "default-profile-image.png"} // Ensure default image
+              image={portfolio.photo || "default-profile-image.png"}
             />
           ))}
         </div>
 
-        {/* Load More */}
         {visibleSpeakers < portfolios.length && (
           <div className="mt-10 text-center">
             <span
