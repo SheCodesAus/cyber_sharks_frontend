@@ -12,8 +12,13 @@ const SearchPage = () => {
   // Fetch data from backend when page loads
   useEffect(() => {
     const loadData = async () => {
-      const data = await fetchPortfolios();
-      setPortfolios(data);
+      try {
+        const data = await fetchPortfolios();
+        // console.log("Fetched Portfolios Data:", data);
+        setPortfolios(data);
+      } catch (error) {
+        console.error("Error fetching portfolios:", error);
+      }
     };
     loadData();
   }, []);
