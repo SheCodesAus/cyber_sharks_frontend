@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
-import getPortfolioById from "../api/get-portfolio-by-id"; // Import API function
+import getPortfolioById from "../api/get-portfolioById"; // Import API function
 
 function SinglePortfolio() {
   const { id } = useParams(); // Get portfolio ID from URL
