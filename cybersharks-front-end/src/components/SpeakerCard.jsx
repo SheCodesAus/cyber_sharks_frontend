@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const SpeakerCard = ({ id, name, role, location, tags, image }) => {
   console.log(`Rendering SpeakerCard: ID=${id}, Name=${name}, Image=${image}`); // Debugging
@@ -15,17 +16,21 @@ const SpeakerCard = ({ id, name, role, location, tags, image }) => {
               image && image !== "null" ? image : "/default-profile-image.png"
             } // Handle null images
             alt={name}
+            effect="blur"
             className="w-full h-full object-cover"
           />
         </div>
 
         {/* White Info Section - Fixed Height */}
-        <div className="bg-white p-4 rounded-b-2xl flex flex-col justify-between min-h-[120px]">
-          <div>
-            <h3 className="text-lg font-semibold">{name}</h3>
-            <p className="text-gray-500">
-              {role} - {location}
-            </p>
+        <div className="bg-white p-4 rounded-b-2xl flex flex-col justify-between h-44 shadow-md">
+          <div className="space-y-3">
+            <h3 className="text-xl font-bold text-gray-800 truncate">{name}</h3>
+            <p className="text-gray-600 text-sm truncate">{role}</p>
+            <div className="flex items-center gap-2 text-gray-500 text-sm">
+              <FaMapMarkerAlt className="text-[#FF6602]" />{" "}
+              {/* Icon with accent color */}
+              <span className="truncate">{location}</span>
+            </div>
           </div>
 
           {/* Add space between name/role and tags */}

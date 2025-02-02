@@ -109,14 +109,14 @@ function CreatePortfolio() {
 
     try {
       setIsLoading(true);
-
+      console.log(formData);
       // Call the signup API
       const response = await postPortfolio(
         firstName,
         lastName,
-        biography,
-        company,
         occupation,
+        company,
+        biography,
         experienceLevel,
         photo,
         linkedin,

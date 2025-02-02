@@ -52,15 +52,28 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
         selectedTopics
       );
 
+      const searchKeywords = [
+        location ? `Location: "${location}"` : null,
+        selectedSpecialisations.length > 0
+          ? `Specialisations: "${selectedSpecialisations.join(", ")}"`
+          : null,
+        selectedTopics.length > 0
+          ? `Topics: "${selectedTopics.join(", ")}"`
+          : null,
+      ]
+        .filter(Boolean)
+        .join(" | ");
+
       if (result.error) {
         setFilterdPortfolio([]);
-        setErrorMessage(result.error);
+        setErrorMessage(`Oops, no results for: ${searchKeywords} 🙁`);
       }
       if (Array.isArray(result.profiles) && result.profiles.length > 0) {
         setFilterdPortfolio(result.profiles);
         setErrorMessage("");
       } else {
-        setErrorMessage(result.error);
+        setFilterdPortfolio([]);
+        setErrorMessage(`Oops, no results for: ${searchKeywords} 🙁`);
         console.log(result.error);
       }
     } catch (error) {

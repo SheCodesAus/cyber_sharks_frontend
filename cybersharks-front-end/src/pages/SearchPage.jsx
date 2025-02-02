@@ -10,11 +10,35 @@ const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const [filteredPortfolios, setFilterdPortfolio] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  console.log(errorMessage);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await fetchPortfolios();
+        setPortfolios(data);
+      } catch (error) {
+        console.error("Error fetching portfolios:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadData();
+  }, []);
+
+  console.log(portfolios);
+  console.log(filteredPortfolios);
 
   const displayPortfolios =
-    filteredPortfolios !== null ? filteredPortfolios : portfolios;
+    filteredPortfolios.length > 0
+      ? portfolios.filter((portfolio) =>
+          filteredPortfolios.some((filtered) => filtered.id === portfolio.id)
+        )
+      : portfolios;
 
-  console.log(displayPortfolios);
   return (
     <div className="min-h-screen bg-[#FFFDFC] text-customBlack">
       <div className="max-w-7xl mx-auto px-6 py-20">
@@ -24,29 +48,48 @@ const SearchPage = () => {
           setErrorMessage={setErrorMessage}
         />
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 gap-y-12">
-          {displayPortfolios.length > 0 ? (
-            displayPortfolios
-              .slice(0, visibleSpeakers)
-              .map((portfolio, index) => (
-                <SpeakerCard
-                  id={portfolio.id}
-                  key={portfolio.id}
-                  name={`${portfolio.first_name} ${portfolio.last_name}`}
-                  role={portfolio.occupation || "N/A"}
-                  location={portfolio.location}
-                  tags={portfolio.specialisations || []}
-                  image={portfolio.photo}
-                />
-              ))
-          ) : (
-            <p className="text-center text-gray-500 col-span-full">
-              {errorMessage}
-            </p>
-          )}
-        </div>
+        {/* 로딩 중일 때 표시 */}
+        {isLoading ? (
+          <div className="text-center text-gray-500">Loading...</div>
+        ) : (
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 gap-y-12">
+            {filteredPortfolios.length > 0 ? (
+              displayPortfolios
+                .slice(0, visibleSpeakers)
+                .map((portfolio) => (
+                  <SpeakerCard
+                    id={portfolio.id}
+                    key={portfolio.id}
+                    name={`${portfolio.first_name} ${portfolio.last_name}`}
+                    role={portfolio.occupation || "N/A"}
+                    location={portfolio.location}
+                    tags={portfolio.specialisations || []}
+                    image={portfolio.photo}
+                  />
+                ))
+            ) : errorMessage ? (
+              <p className="text-center text-gray-500 col-span-full">
+                {errorMessage}
+              </p>
+            ) : (
+              portfolios
+                .slice(0, visibleSpeakers)
+                .map((portfolio) => (
+                  <SpeakerCard
+                    id={portfolio.id}
+                    key={portfolio.id}
+                    name={`${portfolio.first_name} ${portfolio.last_name}`}
+                    role={portfolio.occupation || "N/A"}
+                    location={portfolio.location}
+                    tags={portfolio.specialisations || []}
+                    image={portfolio.photo}
+                  />
+                ))
+            )}
+          </div>
+        )}
 
-        {visibleSpeakers < portfolios.length && (
+        {visibleSpeakers < portfolios.length && !isLoading && (
           <div className="mt-10 text-center">
             <span
               onClick={() => setVisibleSpeakers((prev) => prev + 8)}
