@@ -13,6 +13,7 @@ const SearchPage = () => {
   const displayPortfolios =
     filteredPortfolios !== null ? filteredPortfolios : portfolios;
 
+  console.log(displayPortfolios);
   return (
     <div className="min-h-screen bg-[#FFFDFC] text-customBlack">
       <div className="max-w-7xl mx-auto px-6 py-20">
@@ -27,7 +28,7 @@ const SearchPage = () => {
           {displayPortfolios.length > 0 ? (
             displayPortfolios
               .slice(0, visibleSpeakers)
-              .map((portfolio) => (
+              .map((portfolio, index) => (
                 <SpeakerCard
                   id={portfolio.id}
                   key={portfolio.id}
