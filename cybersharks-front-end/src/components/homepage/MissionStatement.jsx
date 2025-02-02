@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function MissionStatement() {
+  const navigate = useNavigate();
+
   return (
     <section
       id="mission-statement"
@@ -34,7 +37,11 @@ function MissionStatement() {
               That's why we work to connect event organizers with inspiring
               speakers who share your path of making your journey unforgettable.
             </p>
-            <button className="bg-white text-[#1a1a1a] font-medium rounded-full px-6 py-3 hover:bg-[#FF6602] transition-all -ml-24">
+
+            <button
+              onClick={() => navigate("/search")}
+              className="bg-white text-[#1a1a1a] font-medium rounded-full px-6 py-3 hover:bg-[#FF6602] transition-all -ml-24"
+            >
               Find Speakers
             </button>
           </div>
