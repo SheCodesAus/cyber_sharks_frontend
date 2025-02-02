@@ -46,12 +46,10 @@ function SinglePortfolio() {
         return <p className="text-gray-700">{portfolio.biography}</p>;
       case "Specialisations":
         return (
-          <p className="text-gray-700">
-            {portfolio.specialisations.join(", ")}
-          </p>
+          <p className="text-gray-700">{portfolio.specialisations_detail}</p>
         );
       case "Topics":
-        return <p className="text-gray-700">{portfolio.topics.join(", ")}</p>;
+        return <p className="text-gray-700">{portfolio.topic_detail}</p>;
       default:
         return <p className="text-gray-500">Select a tab to see content.</p>;
     }
@@ -63,15 +61,15 @@ function SinglePortfolio() {
       <div className="bg-white shadow-lg rounded-lg max-w-3xl mx-auto text-center pt-20 py-3">
         <img
           className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-accent1"
-          src={portfolio.photo || "https://via.placeholder.com/150"}
+          src={portfolio.photo}
           alt={`${portfolio.first_name} ${portfolio.last_name}`}
         />
         <h2 className="text-2xl font-semibold mt-4">
           {portfolio.first_name} {portfolio.last_name}
         </h2>
         <div className="flex justify-center items-center">
-          <FaMapMarkerAlt />
-          <p className="text-gray-500">{portfolio.location}</p>
+          <FaMapMarkerAlt className="text-[#FF6602]" />{" "}
+          <p className="ml-1 text-gray-500">{portfolio.location}</p>
         </div>
         <p className="text-gray-500">
           {portfolio.occupation} at {portfolio.company || "N/A"}
@@ -80,15 +78,15 @@ function SinglePortfolio() {
         {/* Contact Links */}
         <div className="relative flex justify-center gap-4 mt-4">
           <div
-            className={`absolute inset-0 bg-white/40 backdrop-blur-md ${
+            className={`absolute inset-0 bg-white/40 backdrop-blur-sm ${
               auth.token ? "hidden" : "flex items-center justify-center"
             }`}
           >
             <p
-              className="text-gray-600 cursor-pointer font-bold hover:underline"
+              className="text-customBlack cursor-pointer font-bold text-[1.1rem]"
               onClick={() => navigate("/login")}
             >
-              Please login to see the contact details
+              Please login to see the contact details.
             </p>
           </div>
           <div
@@ -106,7 +104,7 @@ function SinglePortfolio() {
               href={portfolio.linkedin_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-accent1"
+              className="flex items-center gap-2  cursor-pointer  hover:text-accent1"
             >
               <FaLinkedin className="w-5 h-5" /> LinkedIn
             </a>
