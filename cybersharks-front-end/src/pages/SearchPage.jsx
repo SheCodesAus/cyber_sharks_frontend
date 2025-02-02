@@ -48,7 +48,7 @@ const SearchPage = () => {
           setErrorMessage={setErrorMessage}
         />
 
-        {/* 로딩 중일 때 표시 */}
+      
         {isLoading ? (
           <div className="text-center text-gray-500">Loading...</div>
         ) : (
