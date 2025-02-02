@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchPortfolios } from "../api/get-project";
 import Search from "../components/Search";
 import SpeakerCard from "../components/SpeakerCard";
-import { useSearchParams } from "react-router-dom"; // For reading URL params
+import { useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
-  const [portfolios, setPortfolios] = useState([]); // Stores fetched data
+  const [portfolios, setPortfolios] = useState([]);
   const [visibleSpeakers, setVisibleSpeakers] = useState(8);
   const [searchParams] = useSearchParams();
   const [filteredPortfolios, setFilterdPortfolio] = useState([]);
@@ -23,7 +24,6 @@ const SearchPage = () => {
           setErrorMessage={setErrorMessage}
         />
 
-        {/* Display Portfolio Data as Speaker Cards */}
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 gap-y-12">
           {displayPortfolios.length > 0 ? (
             displayPortfolios
@@ -36,7 +36,7 @@ const SearchPage = () => {
                   role={portfolio.occupation || "N/A"}
                   location={portfolio.location}
                   tags={portfolio.specialisations || []}
-                  image={portfolio.photo || "default-profile-image.png"}
+                  image={portfolio.photo}
                 />
               ))
           ) : (
@@ -46,7 +46,6 @@ const SearchPage = () => {
           )}
         </div>
 
-        {/* Load More */}
         {visibleSpeakers < portfolios.length && (
           <div className="mt-10 text-center">
             <span
