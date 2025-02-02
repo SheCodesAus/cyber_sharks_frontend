@@ -303,7 +303,7 @@ function Search({ onSearch }) {
           </button>
         </div>
 
-        {/* Display orange tags */}
+        {/* Display tags */}
         <div className="flex flex-wrap gap-2">
           {location && (
             <span className="bg-[#FF6602] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
