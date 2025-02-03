@@ -12,7 +12,7 @@ const StatsSection = () => {
           <br />
           <small>
             <a
-              href="https://www.manpowergroup.com.au/newsroom/australian-women-in-tech/"
+              href="https://www.manpowergroup.com.au/blog/2023/09/empowering-female-talent-in-the-australian-it-sector"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#FF6602] hover:text-[#FF8533]"
@@ -33,7 +33,7 @@ const StatsSection = () => {
           <br />
           <small>
             <a
-              href="https://www.education.gov.au/news/girls-stem-toolkit"
+              href="https://www.industry.gov.au/news/state-stem-gender-equity-2024"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#FF6602] hover:text-[#FF8533]"
@@ -54,7 +54,7 @@ const StatsSection = () => {
           <br />
           <small>
             <a
-              href="https://www.cfotech.com.au/news/gender-diversity-in-tech-could-boost-economy-by-11b/"
+              href="https://cfotech.com.au/story/iwd-2024-bridging-gender-gaps-in-the-tech-sector-and-startups"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#FF6602] hover:text-[#FF8533]"
