@@ -3,17 +3,67 @@ import StatsCard from "../StatsCard";
 const StatsSection = () => {
   const stats = [
     {
-      percentage: "93",
-      description:
-        "of event organizers found their ideal speakers through our platform.",
+      percentage: "29",
+      symbol: "%",
+      description: (
+        <>
+          of the Australian ICT workforce is made up of women, highlighting a
+          significant gender disparity in the tech industry.
+          <br />
+          <small>
+            <a
+              href="https://www.manpowergroup.com.au/blog/2023/09/empowering-female-talent-in-the-australian-it-sector"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#FF6602] hover:text-[#FF8533]"
+            >
+              Source: ManpowerGroup Australia
+            </a>
+          </small>
+        </>
+      ),
     },
     {
-      percentage: "85",
-      description: "of speakers received new opportunities within 3 months.",
+      percentage: "25",
+      symbol: "%",
+      description: (
+        <>
+          of Year 12 enrolments in IT, physics, and engineering are girls,
+          indicating early-stage gender imbalances in STEM education.
+          <br />
+          <small>
+            <a
+              href="https://www.industry.gov.au/news/state-stem-gender-equity-2024"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#FF6602] hover:text-[#FF8533]"
+            >
+              Source: Australian Government
+            </a>
+          </small>
+        </>
+      ),
     },
     {
-      percentage: "78",
-      description: "increase in diverse representation at tech events.",
+      percentage: "11B",
+      symbol: "$",
+      description: (
+        <>
+          in economic growth could be added by increasing gender diversity in
+          tech.
+          <br />
+          <small>
+            <a
+              href="https://cfotech.com.au/story/iwd-2024-bridging-gender-gaps-in-the-tech-sector-and-startups"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#FF6602] hover:text-[#FF8533]"
+            >
+              Source: CFOtech Australia
+            </a>
+          </small>
+        </>
+      ),
     },
   ];
 
@@ -33,6 +83,7 @@ const StatsSection = () => {
             <StatsCard
               key={index}
               percentage={stat.percentage}
+              symbol={stat.symbol}
               description={stat.description}
             />
           ))}

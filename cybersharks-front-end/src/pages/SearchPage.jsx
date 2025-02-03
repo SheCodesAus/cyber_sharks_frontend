@@ -1,61 +1,94 @@
 import React, { useState, useEffect } from "react";
-import { fetchPortfolios } from "../api/get-project"; // Import API function
+import { fetchPortfolios } from "../api/get-project";
 import Search from "../components/Search";
 import SpeakerCard from "../components/SpeakerCard";
-import { useSearchParams } from "react-router-dom"; // For reading URL params
+import { useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
-  const [portfolios, setPortfolios] = useState([]); // Stores fetched data
+  const [portfolios, setPortfolios] = useState([]);
   const [visibleSpeakers, setVisibleSpeakers] = useState(8);
   const [searchParams] = useSearchParams();
+  const [filteredPortfolios, setFilterdPortfolio] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Fetch data from backend when page loads
+  console.log(errorMessage);
+
   useEffect(() => {
     const loadData = async () => {
-      const data = await fetchPortfolios();
-      setPortfolios(data);
+      try {
+        setIsLoading(true);
+        const data = await fetchPortfolios();
+        setPortfolios(data);
+      } catch (error) {
+        console.error("Error fetching portfolios:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     loadData();
   }, []);
 
-  console.log("Fetched Portfolios:", portfolios); // Debugging purpose
+  console.log(portfolios);
+  console.log(filteredPortfolios);
 
-  // Extract filters from the URL query parameters
-  const selectedLocation = searchParams.get("location") || "";
-  const selectedTopics = searchParams.getAll("topics");
-  const selectedSpecialisations = searchParams.getAll("specialisations");
-
-  // Filtering logic based on user selection
-  // const filteredSpeakers = portfolios.filter((speaker) => {
-  //   const matchesLocation = !selectedLocation || speaker.location === selectedLocation;
-  //   const matchesTopics = selectedTopics.length === 0 || selectedTopics.some((topic) => speaker.tags.includes(topic));
-  //   const matchesSpecialisations = selectedSpecialisations.length === 0 || selectedSpecialisations.some((spec) => speaker.tags.includes(spec));
-  //   return matchesLocation && matchesTopics && matchesSpecialisations;
-  // });
+  const displayPortfolios =
+    filteredPortfolios.length > 0
+      ? portfolios.filter((portfolio) =>
+          filteredPortfolios.some((filtered) => filtered.id === portfolio.id)
+        )
+      : portfolios;
 
   return (
     <div className="min-h-screen bg-[#FFFDFC] text-customBlack">
       <div className="max-w-7xl mx-auto px-6 py-20">
         {/* Search Component */}
-        <Search />
+        <Search
+          setFilterdPortfolio={setFilterdPortfolio}
+          setErrorMessage={setErrorMessage}
+        />
 
-        {/* Display Portfolio Data as Speaker Cards */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 gap-y-12">
-          {portfolios.slice(0, visibleSpeakers).map((portfolio) => (
-            <SpeakerCard
-              id={portfolio.id}
-              key={portfolio.id}
-              name={`${portfolio.first_name} ${portfolio.last_name}`}
-              role={portfolio.occupation || "N/A"}
-              location={portfolio.location}
-              tags={portfolio.specialisations || []}
-              image={portfolio.photo || "default-profile-image.png"} // Ensure default image
-            />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="text-center text-gray-500">Loading...</div>
+        ) : (
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 gap-y-12">
+            {filteredPortfolios.length > 0 ? (
+              displayPortfolios
+                .slice(0, visibleSpeakers)
+                .map((portfolio) => (
+                  <SpeakerCard
+                    id={portfolio.id}
+                    key={portfolio.id}
+                    name={`${portfolio.first_name} ${portfolio.last_name}`}
+                    role={portfolio.occupation || "N/A"}
+                    location={portfolio.location}
+                    tags={portfolio.specialisations || []}
+                    image={portfolio.photo}
+                  />
+                ))
+            ) : errorMessage ? (
+              <p className="text-center text-gray-500 col-span-full">
+                {errorMessage}
+              </p>
+            ) : (
+              portfolios
+                .slice(0, visibleSpeakers)
+                .map((portfolio) => (
+                  <SpeakerCard
+                    id={portfolio.id}
+                    key={portfolio.id}
+                    name={`${portfolio.first_name} ${portfolio.last_name}`}
+                    role={portfolio.occupation || "N/A"}
+                    location={portfolio.location}
+                    tags={portfolio.specialisations || []}
+                    image={portfolio.photo}
+                  />
+                ))
+            )}
+          </div>
+        )}
 
-        {/* Load More */}
-        {visibleSpeakers < portfolios.length && (
+        {visibleSpeakers < portfolios.length && !isLoading && (
           <div className="mt-10 text-center">
             <span
               onClick={() => setVisibleSpeakers((prev) => prev + 8)}

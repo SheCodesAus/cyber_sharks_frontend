@@ -1,186 +1,17 @@
-// import React, { useState } from "react";
-// import Button from "./Button";
-
-// // Search component for filtering results by location, topics, and specialisations
-// function Search() {
-//   // State management for form fields and selected filter
-//   const [location, setLocation] = useState("");
-//   const [selectedTopics, setSelectedTopics] = useState([]);
-//   const [selectedSpecialisations, setSelectedSpecialisations] = useState([]);
-
-//   // Event handler for location select input
-//   const handleLocationChange = (e) => {
-//     setLocation(e.target.value);
-//   };
-
-//   // Event handler for topic select input
-//   // Add new topic if not already selected
-//   const handleTopicChange = (e) => {
-//     const value = e.target.value;
-//     if (value && !selectedTopics.includes(value)) {
-//       setSelectedTopics([...selectedTopics, value]);
-//     }
-//   };
-
-//   // Event handler for specialisation select input
-//   // Add new specialisation if not already selected
-//   const handleSpecialisationChange = (e) => {
-//     const value = e.target.value;
-//     if (value && !selectedSpecialisations.includes(value)) {
-//       setSelectedSpecialisations([...selectedSpecialisations, value]);
-//     }
-//   };
-
-//   // Remove selected filter tag based on type (location/topic/specialisation)
-//   const removeTag = (type, value) => {
-//     if (type === "location") {
-//       setLocation("");
-//     } else if (type === "topic") {
-//       setSelectedTopics(selectedTopics.filter((topic) => topic !== value));
-//     } else if (type === "specialisation") {
-//       setSelectedSpecialisations(
-//         selectedSpecialisations.filter((spec) => spec !== value)
-//       );
-//     }
-//   };
-
-//   // Log search parameters when search button is clicked
-//   const handleSearch = () => {
-//     console.log("Search clicked", {
-//       location,
-//       topics: selectedTopics,
-//       specialisations: selectedSpecialisations,
-//     });
-//   };
-
-//   return (
-//     <div className="flex justify-center items-center w-full px-4 py-8">
-//       <div className="w-auto bg-white rounded-xl shadow-lg p-8">
-//         <div className="flex flex-col space-y-6">
-//           {/* Search filters section */}
-//           <div className="flex space-x-4">
-//             {/* Location select input */}
-//             <select
-//               value={location}
-//               onChange={handleLocationChange}
-//               className="w-48 border border-gray-300 rounded-lg p-2 bg-white text-gray-500 hover:border-gray-400 hover:bg-gray-100"
-//             >
-//               <option value="" disabled>
-//                 Select Location
-//               </option>
-//               <option value="Brisbane" className="text-black">
-//                 Brisbane
-//               </option>
-//               <option value="Melbourne" className="text-black">
-//                 Melbourne
-//               </option>
-//               <option value="Sydney" className="text-black">
-//                 Sydney
-//               </option>
-//             </select>
-
-//             {/* Topic select input */}
-//             <select
-//               value=""
-//               onChange={handleTopicChange}
-//               className="w-48 border border-gray-300 rounded-lg p-2 bg-white text-gray-500 hover:border-gray-400 hover:bg-gray-100"
-//             >
-//               <option value="" disabled>
-//                 Select Topic
-//               </option>
-//               <option value="Scrum Master" className="text-black">
-//                 Scrum Master
-//               </option>
-//               <option value="Public Speaker" className="text-black">
-//                 Public Speaker
-//               </option>
-//             </select>
-
-//             {/* Specialisation select input */}
-//             <select
-//               value=""
-//               onChange={handleSpecialisationChange}
-//               className="w-48 border border-gray-300 rounded-lg p-2 bg-white text-gray-500 hover:border-gray-400 hover:bg-gray-100"
-//             >
-//               <option value="" disabled>
-//                 Select Specialisation
-//               </option>
-//               <option value="React" className="text-black">
-//                 React
-//               </option>
-//               <option value="Django" className="text-black">
-//                 Django
-//               </option>
-//               <option value="Python" className="text-black">
-//                 Python
-//               </option>
-//             </select>
-
-//             {/* Search button */}
-//             <div className="w-64">
-//               <Button onClick={handleSearch} name="Search" />
-//             </div>
-//           </div>
-
-//           {/* Selected filters tags display */}
-//           <div className="flex flex-wrap gap-2 justify-center">
-//             {location && (
-//               <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm flex items-center gap-2">
-//                 {location}
-//                 <button
-//                   onClick={() => removeTag("location", location)}
-//                   className="hover:text-purple-600"
-//                 >
-//                   ×
-//                 </button>
-//               </span>
-//             )}
-//             {selectedTopics.map((topic) => (
-//               <span
-//                 key={topic}
-//                 className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm flex items-center gap-2"
-//               >
-//                 {topic}
-//                 <button
-//                   onClick={() => removeTag("topic", topic)}
-//                   className="hover:text-blue-600"
-//                 >
-//                   ×
-//                 </button>
-//               </span>
-//             ))}
-//             {selectedSpecialisations.map((spec) => (
-//               <span
-//                 key={spec}
-//                 className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm flex items-center gap-2"
-//               >
-//                 {spec}
-//                 <button
-//                   onClick={() => removeTag("specialisation", spec)}
-//                   className="hover:text-green-600"
-//                 >
-//                   ×
-//                 </button>
-//               </span>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Search;
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import searchPortfolioByKeywords from "../api/get-search.js";
 
-function Search({ onSearch }) {
+function Search({ setFilterdPortfolio, setErrorMessage }) {
   const [location, setLocation] = useState("");
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [selectedSpecialisations, setSelectedSpecialisations] = useState([]);
 
   const navigate = useNavigate();
+
+  // Check if any filters are active
+  const hasActiveFilters =
+    location || selectedTopics.length > 0 || selectedSpecialisations.length > 0;
 
   // handle dropdown selections
   const handleLocationChange = (e) => {
@@ -201,50 +32,98 @@ function Search({ onSearch }) {
     }
   };
 
+  const formattingKeyword = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  };
+
   const removeTag = (type, value) => {
-    if (type === "location") {
-      setLocation("");
-    } else if (type === "topic") {
-      setSelectedTopics(selectedTopics.filter((topic) => topic !== value));
-    } else if (type === "specialisation") {
-      setSelectedSpecialisations(
-        selectedSpecialisations.filter((spec) => spec !== value)
-      );
+    switch (type) {
+      case "location":
+        setLocation("");
+        break;
+      case "topic":
+        setSelectedTopics(selectedTopics.filter((topic) => topic !== value));
+        break;
+      case "specialisation":
+        setSelectedSpecialisations(
+          selectedSpecialisations.filter((spec) => spec !== value)
+        );
+        break;
     }
 
-    // if all filters are empty, reset the page to show all profiles
-    const updatedLocation = type === "location" ? "" : location;
-    const updatedTopics =
-      type === "topic"
-        ? selectedTopics.filter((topic) => topic !== value)
-        : selectedTopics;
-    const updatedSpecialisations =
-      type === "specialisation"
-        ? selectedSpecialisations.filter((spec) => spec !== value)
-        : selectedSpecialisations;
+    // display all profiles once filters removed
+    const willHaveNoFilters =
+      (type === "location" &&
+        !selectedTopics.length &&
+        !selectedSpecialisations.length) ||
+      (type === "topic" &&
+        !location &&
+        selectedTopics.filter((t) => t !== value).length === 0 &&
+        !selectedSpecialisations.length) ||
+      (type === "specialisation" &&
+        !location &&
+        !selectedTopics.length &&
+        selectedSpecialisations.filter((s) => s !== value).length === 0);
 
-    if (
-      !updatedLocation &&
-      updatedTopics.length === 0 &&
-      updatedSpecialisations.length === 0
-    ) {
-      navigate("/search"); // Reset URL to default search page
-      onSearch("", [], []); // Reset profiles
+    if (willHaveNoFilters) {
+      setFilterdPortfolio([]);
+      setErrorMessage("");
+    } else {
+      // If there are still active filters,search with remaining filters
+      handleSearch({
+        newLocation: type === "location" ? "" : location,
+        newTopics:
+          type === "topic"
+            ? selectedTopics.filter((t) => t !== value)
+            : selectedTopics,
+        newSpecialisations:
+          type === "specialisation"
+            ? selectedSpecialisations.filter((s) => s !== value)
+            : selectedSpecialisations,
+      });
     }
   };
 
   // handle search - update URL with query parameters
-  const handleSearch = () => {
-    const params = new URLSearchParams();
-    if (location) params.append("location", location);
-    selectedTopics.forEach((topic) => params.append("topics", topic));
-    selectedSpecialisations.forEach((spec) =>
-      params.append("specialisations", spec)
-    );
+  const handleSearch = async (overrideFilters = null) => {
+    try {
+      const searchLocation = overrideFilters
+        ? overrideFilters.newLocation
+        : location;
+      const searchTopics = overrideFilters
+        ? overrideFilters.newTopics
+        : selectedTopics;
+      const searchSpecialisations = overrideFilters
+        ? overrideFilters.newSpecialisations
+        : selectedSpecialisations;
 
-    navigate(`/search?${params.toString()}`);
+      const result = await searchPortfolioByKeywords(
+        searchLocation,
+        searchSpecialisations,
+        searchTopics
+      );
 
-    onSearch(location, selectedTopics, selectedSpecialisations);
+      const searchKeywords = [
+        searchLocation ? `Location: "${searchLocation}"` : null,
+        searchSpecialisations.length > 0
+          ? `Specialisations: "${searchSpecialisations.join(", ")}"`
+          : null,
+        searchTopics.length > 0 ? `Topics: "${searchTopics.join(", ")}"` : null,
+      ]
+        .filter(Boolean)
+        .join(" | ");
+
+      if (result.error || !result.profiles?.length) {
+        setFilterdPortfolio([]);
+        setErrorMessage(`Oops, no results for: ${searchKeywords} 🙁`);
+      } else if (Array.isArray(result.profiles) && result.profiles.length > 0) {
+        setFilterdPortfolio(result.profiles);
+        setErrorMessage("");
+      }
+    } catch (error) {
+      console.error("Failed to search:", error);
+      setErrorMessage("Something went wrong.");
+    }
   };
 
   return (
@@ -260,12 +139,30 @@ function Search({ onSearch }) {
             <option value="" disabled>
               Select Location
             </option>
-            <option value="Brisbane">Brisbane</option>
-            <option value="Melbourne">Melbourne</option>
-            <option value="Sydney">Sydney</option>
+            <option value="Brisbane" className="text-black">
+              Brisbane
+            </option>
+            <option value="Melbourne" className="text-black">
+              Melbourne
+            </option>
+            <option value="Sydney" className="text-black">
+              Sydney
+            </option>
+            <option value="Perth" className="text-black">
+              Perth
+            </option>
+            <option value="Adelaide" className="text-black">
+              Adelaide
+            </option>
+            <option value="Darwin" className="text-black">
+              Darwin
+            </option>
+            <option value="Canberra" className="text-black">
+              Canberra
+            </option>
           </select>
 
-          {/* topics ddropdown */}
+          {/* topics dropdown */}
           <select
             value=""
             onChange={handleTopicChange}
@@ -274,13 +171,27 @@ function Search({ onSearch }) {
             <option value="" disabled>
               Select Topic
             </option>
-            <option value="Scrum Master">Scrum Master</option>
-            <option value="Public Speaker">Public Speaker</option>
-            <option value="AI">AI</option>
-            <option value="Cloud">Cloud</option>
+            <option value="devops" className="text-black">
+              Dev Ops
+            </option>
+            <option value="frontend" className="text-black">
+              Frontend
+            </option>
+            <option value="agile methodologies" className="text-black">
+              Agile methodologies
+            </option>
+            <option value="data visualisation" className="text-black">
+              Data Visualisation
+            </option>
+            <option value="responsive design" className="text-black">
+              Responsive Design
+            </option>
+            <option value="API Design" className="text-black">
+              API Design
+            </option>
           </select>
 
-          {/* Specialisations propdown */}
+          {/* Specialisations dropdown */}
           <select
             value=""
             onChange={handleSpecialisationChange}
@@ -289,25 +200,37 @@ function Search({ onSearch }) {
             <option value="" disabled>
               Select Specialisation
             </option>
-            <option value="React">React</option>
-            <option value="Django">Django</option>
-            <option value="Python">Python</option>
+            <option value="reactjs" className="text-black">
+              ReactJs
+            </option>
+            <option value="html/css" className="text-black">
+              Html/Css
+            </option>
+            <option value="java" className="text-black">
+              Java
+            </option>
+            <option value="django" className="text-black">
+              Django
+            </option>
+            <option value="python" className="text-black">
+              Python
+            </option>
           </select>
 
           {/* Search button */}
           <button
-            onClick={handleSearch}
+            onClick={() => handleSearch()}
             className="bg-[#FFF7ED] text-[#FF6602] border border-[#FF6602] px-6 py-2 rounded-lg hover:bg-[#FFEBD9] transition-shadow shadow-md hover:shadow-lg"
           >
             Search
           </button>
         </div>
 
-        {/* Display orange tags */}
+        {/* Display tags */}
         <div className="flex flex-wrap gap-2">
           {location && (
             <span className="bg-[#FF6602] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
-              {location}
+              {formattingKeyword(location)}
               <button
                 onClick={() => removeTag("location", location)}
                 className="hover:text-gray-200"
@@ -321,7 +244,7 @@ function Search({ onSearch }) {
               key={topic}
               className="bg-[#FF6602] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2"
             >
-              {topic}
+              {formattingKeyword(topic)}
               <button
                 onClick={() => removeTag("topic", topic)}
                 className="hover:text-gray-200"
@@ -335,7 +258,7 @@ function Search({ onSearch }) {
               key={spec}
               className="bg-[#FF6602] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2"
             >
-              {spec}
+              {formattingKeyword(spec)}
               <button
                 onClick={() => removeTag("specialisation", spec)}
                 className="hover:text-gray-200"
