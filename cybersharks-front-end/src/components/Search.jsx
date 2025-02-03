@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import searchPortfolioByKeywords from "../api/get-search.js";
+
 function Search({ setFilterdPortfolio, setErrorMessage }) {
   const [location, setLocation] = useState("");
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [selectedSpecialisations, setSelectedSpecialisations] = useState([]);
 
   const navigate = useNavigate();
+
+  // Check if any filters are active
+  const hasActiveFilters =
+    location || selectedTopics.length > 0 || selectedSpecialisations.length > 0;
 
   // handle dropdown selections
   const handleLocationChange = (e) => {
@@ -32,52 +37,91 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
   };
 
   const removeTag = (type, value) => {
-    if (type === "location") {
-      setLocation("");
-    } else if (type === "topic") {
-      setSelectedTopics(selectedTopics.filter((topic) => topic !== value));
-    } else if (type === "specialisation") {
-      setSelectedSpecialisations(
-        selectedSpecialisations.filter((spec) => spec !== value)
-      );
+    switch (type) {
+      case "location":
+        setLocation("");
+        break;
+      case "topic":
+        setSelectedTopics(selectedTopics.filter((topic) => topic !== value));
+        break;
+      case "specialisation":
+        setSelectedSpecialisations(
+          selectedSpecialisations.filter((spec) => spec !== value)
+        );
+        break;
+    }
+
+    // display all profiles once filters removed
+    const willHaveNoFilters =
+      (type === "location" &&
+        !selectedTopics.length &&
+        !selectedSpecialisations.length) ||
+      (type === "topic" &&
+        !location &&
+        selectedTopics.filter((t) => t !== value).length === 0 &&
+        !selectedSpecialisations.length) ||
+      (type === "specialisation" &&
+        !location &&
+        !selectedTopics.length &&
+        selectedSpecialisations.filter((s) => s !== value).length === 0);
+
+    if (willHaveNoFilters) {
+      setFilterdPortfolio([]);
+      setErrorMessage("");
+    } else {
+      // If there are still active filters,search with remaining filters
+      handleSearch({
+        newLocation: type === "location" ? "" : location,
+        newTopics:
+          type === "topic"
+            ? selectedTopics.filter((t) => t !== value)
+            : selectedTopics,
+        newSpecialisations:
+          type === "specialisation"
+            ? selectedSpecialisations.filter((s) => s !== value)
+            : selectedSpecialisations,
+      });
     }
   };
 
   // handle search - update URL with query parameters
-  const handleSearch = async () => {
+  const handleSearch = async (overrideFilters = null) => {
     try {
+      const searchLocation = overrideFilters
+        ? overrideFilters.newLocation
+        : location;
+      const searchTopics = overrideFilters
+        ? overrideFilters.newTopics
+        : selectedTopics;
+      const searchSpecialisations = overrideFilters
+        ? overrideFilters.newSpecialisations
+        : selectedSpecialisations;
+
       const result = await searchPortfolioByKeywords(
-        location,
-        selectedSpecialisations,
-        selectedTopics
+        searchLocation,
+        searchSpecialisations,
+        searchTopics
       );
 
       const searchKeywords = [
-        location ? `Location: "${location}"` : null,
-        selectedSpecialisations.length > 0
-          ? `Specialisations: "${selectedSpecialisations.join(", ")}"`
+        searchLocation ? `Location: "${searchLocation}"` : null,
+        searchSpecialisations.length > 0
+          ? `Specialisations: "${searchSpecialisations.join(", ")}"`
           : null,
-        selectedTopics.length > 0
-          ? `Topics: "${selectedTopics.join(", ")}"`
-          : null,
+        searchTopics.length > 0 ? `Topics: "${searchTopics.join(", ")}"` : null,
       ]
         .filter(Boolean)
         .join(" | ");
 
-      if (result.error) {
+      if (result.error || !result.profiles?.length) {
         setFilterdPortfolio([]);
         setErrorMessage(`Oops, no results for: ${searchKeywords} 🙁`);
-      }
-      if (Array.isArray(result.profiles) && result.profiles.length > 0) {
+      } else if (Array.isArray(result.profiles) && result.profiles.length > 0) {
         setFilterdPortfolio(result.profiles);
         setErrorMessage("");
-      } else {
-        setFilterdPortfolio([]);
-        setErrorMessage(`Oops, no results for: ${searchKeywords} 🙁`);
-        console.log(result.error);
       }
     } catch (error) {
-      console.error("Fail to search", error.message);
+      console.error("Failed to search:", error);
       setErrorMessage("Something went wrong.");
     }
   };
@@ -118,7 +162,7 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
             </option>
           </select>
 
-          {/* topics ddropdown */}
+          {/* topics dropdown */}
           <select
             value=""
             onChange={handleTopicChange}
@@ -147,7 +191,7 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
             </option>
           </select>
 
-          {/* Specialisations propdown */}
+          {/* Specialisations dropdown */}
           <select
             value=""
             onChange={handleSpecialisationChange}
@@ -175,7 +219,7 @@ function Search({ setFilterdPortfolio, setErrorMessage }) {
 
           {/* Search button */}
           <button
-            onClick={handleSearch}
+            onClick={() => handleSearch()}
             className="bg-[#FFF7ED] text-[#FF6602] border border-[#FF6602] px-6 py-2 rounded-lg hover:bg-[#FFEBD9] transition-shadow shadow-md hover:shadow-lg"
           >
             Search

@@ -33,9 +33,11 @@ function MissionStatement() {
           </h2>
           <div className="flex flex-col sm:flex-row justify-between items-start gap-11">
             <p className="text-lg leading-relaxed max-w-xl">
-              Our mission is to increase the diverse voices and perspectives.
-              That's why we work to connect event organizers with inspiring
-              speakers who share your path of making your journey unforgettable.
+              We believe that visibility creates opportunity. By reflecting the
+              full spectrum of voices in tech—<i>like a prism</i>—we inspire the
+              next generation and foster innovation. That’s why we connect event
+              organisers with a diverse range of speakers, because
+              representation on stage shapes the future of technology.
             </p>
 
             <button

@@ -9,11 +9,13 @@ const IntroSection = () => {
       <div className="max-w-7xl mx-auto px-8 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="flex flex-col justify-center">
           <h1 className="text-4xl md:text-6xl font-serif mb-6 leading-snug">
-            Find diverse tech voices for your next event.
+            {/* Find diverse tech voices for your next event. */}
+            Shaping the future of tech through every lens.
           </h1>
           <p className="text-gray-300 mb-9 text-base">
-            Connect with inspiring speakers who bring fresh perspectives to
-            technology discussions. Let's make your event unforgettable.
+            Discover speakers who challenge conventions, spark new ways of
+            thinking, and illuminate the diverse realities of tech. Let’s create
+            an event that inspires, includes, and leaves a lasting impact.
           </p>
           <div>
             <Button
