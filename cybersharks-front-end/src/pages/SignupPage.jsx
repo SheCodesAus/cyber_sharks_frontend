@@ -16,43 +16,58 @@ function SignupPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
+  function validateForm() {
+    let errors = {};
+
+    if (!/^[a-zA-Z]{2,}$/.test(signUpForm.firstName)) {
+      errors.firstName =
+        "First name must be at least 2 letters long and contain only letters.";
+    }
+
+    if (!/^[a-zA-Z]{2,}$/.test(signUpForm.lastName)) {
+      errors.lastName =
+        "Last name must be at least 2 letters long and contain only letters.";
+    }
+
+    if (!/^[a-zA-Z]{2,}$/.test(signUpForm.username)) {
+      errors.username =
+        "Username must be at least 2 letters long and contain only letters.";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(signUpForm.email)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    setErrorMsg(errors);
+    return Object.keys(errors).length === 0;
+  }
   async function onSubmit(e) {
     e.preventDefault();
 
-    // Check for empty fields
-    const { firstName, lastName, email, username, password } = signUpForm;
-    if (!firstName || !lastName || !email || !username || !password) {
-      setErrorMsg("All fields are required. Please fill in every field.");
-      return;
-    }
-
-    // Clear error message before submitting
-    setErrorMsg("");
+    if (!validateForm()) return;
+    setErrorMsg({});
 
     try {
       setIsLoading(true);
 
-      // Call the signup API
       const response = await postSignUp(
-        username,
-        password,
-        email,
-        firstName,
-        lastName
+        signUpForm.username,
+        signUpForm.password,
+        signUpForm.email,
+        signUpForm.firstName,
+        signUpForm.lastName
       );
       console.log("Sign up successful:", response);
 
-      // Automatically log in the user after signup
-      const login = await postLogin(username, password);
+      const login = await postLogin(signUpForm.username, signUpForm.password);
       window.localStorage.setItem("token", login.token);
       setAuth({ token: login.token });
-      navigate("/");
-      // Redirect to the homepage or search page?
+
       navigate("/");
     } catch (error) {
       console.error("Signup failed:", error.message);
-      setErrorMsg(error.message);
-    } finally {
+      setErrorMsg({ general: error.message });
       setIsLoading(false);
     }
   }
@@ -62,6 +77,10 @@ function SignupPage() {
     setSignUpForm((prevState) => ({
       ...prevState,
       [name]: value,
+    }));
+    setErrorMsg((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
     }));
   }
 
@@ -84,6 +103,10 @@ function SignupPage() {
               required
             />
           </label>
+          {errorMsg.firstName && (
+            <p className="text-red-500 text-sm">{errorMsg.firstName}</p>
+          )}
+
           <label className="input input-bordered flex items-center gap-2  bg-white">
             Last Name
             <input
@@ -96,6 +119,10 @@ function SignupPage() {
               required
             />
           </label>
+
+          {errorMsg.firstName && (
+            <p className="text-red-500 text-sm">{errorMsg.lastName}</p>
+          )}
           <label className="input input-bordered flex items-center gap-2  bg-white">
             Email
             <input
@@ -108,6 +135,9 @@ function SignupPage() {
               required
             />
           </label>
+          {errorMsg.firstName && (
+            <p className="text-red-500 text-sm">{errorMsg.email}</p>
+          )}
           <label className="input input-bordered flex items-center gap-2  bg-white">
             Username
             <input
@@ -120,6 +150,10 @@ function SignupPage() {
               required
             />
           </label>
+
+          {errorMsg.firstName && (
+            <p className="text-red-500 text-sm">{errorMsg.username}</p>
+          )}
           <label className="input input-bordered flex items-center gap-2  bg-white">
             Password
             <input
@@ -132,7 +166,6 @@ function SignupPage() {
               required
             />
           </label>
-          <p className="text-center">{errorMsg}</p>
           <Button
             className="mx-auto mt-2 bg-black px-8 text-base min-w-[140px] text-center rounded-full text-white hover:opacity-90 transition-all h-10"
             children={isLoading ? "Loading..." : "Sign up"}
